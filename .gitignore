@@ -26,5 +26,6 @@ dist-ssr
 .env
 obj
 bin
+.venv
 
 
