@@ -28,10 +28,13 @@ def signup(request):
     return Response({"token": token.key, "user": serializer.data}, status=status.HTTP_201_CREATED)
   return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+from django.contrib.auth import logout as auth_logout
+
 @api_view(['POST'])
+
 def logout(request):
-  
-  return Response({})
+    auth_logout(request)
+    return Response({"detail": "Logged out successfully."}, status=status.HTTP_200_OK)
 
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
