@@ -22,3 +22,10 @@ Content-Type: application/json
 Authorization: Token 217abf00ea78f948e8be987c45d53ee4da1fb42c
 
 {}
+
+###
+POST http://127.0.0.1:8000/logout
+Content-Type: application/json
+Authorization: Token 217abf00ea78f948e8be987c45d53ee4da1fb42c
+  
+{}
