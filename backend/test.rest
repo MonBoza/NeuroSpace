@@ -19,13 +19,26 @@ Content-Type: application/json
 ###
 GET http://127.0.0.1:8000/test_token
 Content-Type: application/json
-Authorization: Token 217abf00ea78f948e8be987c45d53ee4da1fb42c
+Authorization: Token ae9a24198db785e2314720d6ff38b6b72b5874d1
 
 {}
 
 ###
 POST http://127.0.0.1:8000/logout
 Content-Type: application/json
-Authorization: Token 217abf00ea78f948e8be987c45d53ee4da1fb42c
+Authorization: Token ae9a24198db785e2314720d6ff38b6b72b5874d1
   
 {}
+
+###
+POST http://127.0.0:8000/127.0.0.1:8000/UserProfile
+Content-Type: application/json
+Authorization: Token ae9a24198db785e2314720d6ff38b6b72b5874d1
+    
+    {
+        "user": 1,
+        "username": "Test3",
+        "bio": "I am a test user",
+        "profile_pic": "https://www.google.com",
+        
+    }
