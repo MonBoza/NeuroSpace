@@ -25,9 +25,13 @@ SECRET_KEY = 'django-insecure-s^j)++4heq5@bsc8+h1z3s+8m_oohb$ho#h-cclzhl_*jtor-@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+CORS_ALLOW_ALL_METHODS = True
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',  
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'neurospace',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'neurospace.urls'

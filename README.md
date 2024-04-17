@@ -8,6 +8,15 @@ NeuroSpace is an inclusive networking application designed specifically for neur
 
 ## Technologies Used
 
+- React router 
+- vite
+- React Icons
+- Django
+- Django Rest Framework
+- Tailwind CSS
+- (consider Material UI?)
+- Axios
+
 ## Description
 
 ## Setup/Installation Requirements
