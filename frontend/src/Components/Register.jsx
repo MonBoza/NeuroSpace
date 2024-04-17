@@ -2,21 +2,25 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const handleRegister = async () => {
-  try {
-    const response = await axios.post('http://127.0.0.1:8000/signup', registerUser);
-    if (response.status === 200) {
-      setRegisterMessage("Account created successfully!");
-      setRegisterUser({ username: "", email: "", password: "" });
-    } else {
+const Register = () => {
+  const [registerUser, setRegisterUser] = useState({ username: "", email: "", password: "" });
+  const [registerMessage, setRegisterMessage] = useState('');
+  const navigate = useNavigate();
+
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/signup', registerUser);
+      if (response.status === 200) {
+        setRegisterMessage("Account created successfully!");
+        setRegisterUser({ username: "", email: "", password: "" });
+      } 
+      navigate('/');
+    } catch (error) {
+      console.error('There was a problem with the POST request:', error);
+      console.log(error.response.data);
       setRegisterMessage("There was a problem creating the account.");
     }
-  } catch (error) {
-    console.error('There was a problem with the POST request:', error);
-    console.log(error.response.data);
-    setRegisterMessage("There was a problem creating the account.");
-  }
-};
+  };
 
   return (
     <div>
