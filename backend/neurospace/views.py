@@ -14,7 +14,7 @@ from .models import Forum, Comment, Like, UserProfile
 @api_view(['POST', 'GET'])
 def userprofile_list(request):
     if request.method == 'GET':
-        userprofiles = UserProfile.objects.all()
+        userprofiles = UserProfile.objects.all(pk=id)
         serializer = UserProfileSerializer(userprofiles, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
@@ -23,8 +23,16 @@ def userprofile_list(request):
             serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
-    
 
+@api_view(['GET'])
+def userprofile_detail(request, username):
+    try:
+        userprofile = UserProfile.objects.get(user__username=username)
+    except UserProfile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = UserProfileSerializer(userprofile)
+    return Response(serializer.data)
 # Forum Views
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
