@@ -14,7 +14,7 @@ const SignIn = () => {
         setSignInMessage("Sign in successful!");
         setSignInUser({ username: "", password: "" });
       }
-      navigate('/');
+      navigate('/userprofile');
     }
     catch (error) {
       console.error('There was a problem with the POST request:', error);

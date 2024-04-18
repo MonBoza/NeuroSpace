@@ -16,6 +16,9 @@ NeuroSpace is an inclusive networking application designed specifically for neur
 - Tailwind CSS
 - (consider Material UI?)
 - Axios
+- Python3
+- React
+- JavaScript
 
 ## Description
 
