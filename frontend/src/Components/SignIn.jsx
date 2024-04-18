@@ -1,24 +1,24 @@
 import { useState } from "react";
 import axios from "axios";
 import UserProfile from "./UserProfile";
-import { useNavigate, navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [signInUser, setSignInUser] = useState({ username: "", password: "" });
   const [signInMessage, setSignInMessage] = useState("");
-  
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userName, setUserName] = useState(""); // [1
+  const navigate = useNavigate();
+
   const handleSignIn = async () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/login', signInUser);
-      if (response.status === 200) {
+      if (response.status === 201 || response.status === 215) {
         setSignInMessage("Sign in successful!");
-        setSignInUser({ username: "", password: "" }); 
-        console.log(response.data);
-        
-        // Redirect to UserProfile component after successful sign in
-        navigate('/userprofile');
+        setIsAuthenticated(true);
+        setUserName(signInUser.username); // 
+       
       }
-    
     } catch (error) {
       console.error('There was a problem with the POST request:', error);
       console.log(error.response.data);
@@ -33,7 +33,8 @@ const SignIn = () => {
         type="text"
         placeholder="Username"
         value={signInUser.username}
-        onChange={(e) => setSignInUser({ ...signInUser, username: e.target.value })} />
+        onChange={(e) => setSignInUser({ ...signInUser, username: e.target.value })}
+      />
       <br />
       <input
         type="password"
@@ -42,7 +43,8 @@ const SignIn = () => {
         onChange={(e) => setSignInUser({ ...signInUser, password: e.target.value })} />
       <br />
       <button onClick={handleSignIn}>Sign In</button>
-      <UserProfile username={signInUser.username} />
+      <p>{signInMessage}</p>
+      {isAuthenticated && <UserProfile username={signInUser.username} />}
     </div>
   );
 };

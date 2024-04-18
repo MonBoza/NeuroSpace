@@ -27,7 +27,7 @@ def userprofile_list(request):
 @api_view(['GET'])
 def userprofile_detail(request, username):
     try:
-        userprofile = UserProfile.objects.get(user__username=username)
+        userprofile = UserProfile.objects.get(user__username=username,)
     except UserProfile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
