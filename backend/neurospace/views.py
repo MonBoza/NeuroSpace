@@ -1,18 +1,17 @@
-from rest_framework.decorators import api_view
+from rest_framework import serializers
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
-from django.contrib.auth.models import User # type: ignore
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from .serializers import UserSerializer, ForumSerializer, CommentSerializer, LikeSerializer, UserProfileSerializer
-from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
-from .models import  Forum, Comment, Like, UserProfile
+from .models import Forum, Comment, Like, UserProfile
 
 # UserProfile Views
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+@api_view(['POST'])
 def userprofile_list(request):
     if request.method == 'GET':
         userprofiles = UserProfile.objects.all()
@@ -24,6 +23,13 @@ def userprofile_list(request):
             serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def userprofile_detail(request, id):
+    userprofile = get_object_or_404(UserProfile, pk=id)
+    serializer = UserProfileSerializer(userprofile)
+    return Response(serializer.data)
 
 # Forum Views
 @api_view(['GET', 'POST'])
@@ -114,15 +120,15 @@ def login(request):
 
 @api_view(['POST'])
 def signup(request):
-  serializer = UserSerializer(data=request.data)
-  if serializer.is_valid():
-    serializer.save()
-    user = User.objects.get(username=request.data['username'])
-    user.set_password(request.data['password'])
-    user.save()
-    token = Token.objects.create(user=user)
-    return Response({"token": token.key, "user": serializer.data}, status=status.HTTP_201_CREATED)
-  return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save() 
+        user.set_password(request.data['password'])  
+        user.save()  
+        UserProfile.objects.create(user=user)  
+        token = Token.objects.create(user=user)  
+        return Response({"token": token.key, "user": serializer.data}, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 from django.contrib.auth import logout as auth_logout
 

@@ -12,6 +12,7 @@ urlpatterns = [
     re_path('logout', views.logout),
     re_path('test_token', views.test_token),
     path('userprofile/', views.userprofile_list, name='UserProfile_list'),
+    path('userprofile/<int:id>/', views.userprofile_detail, name='UserProfile_detail'),
     path('forum/', views.forum_list, name='forum_list'),
     path('forum/<int:id>/', views.forum_detail, name='forum_detail'),
     path('comment/', views.comment_list, name='comment_list'),
