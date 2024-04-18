@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserProfile from "./UserProfile";
+import { Navigate } from "react-router-dom";
 
 const SignIn = () => {
   const [signInUser, setSignInUser] = useState({ username: "", password: "" });
-  const [signInMessage, setSignInMessage] = useState('');
-  const navigate = useNavigate();
+  const [signInMessage, setSignInMessage] = useState("");
+  const [userId, setUserId] = useState(null);
 
   const handleSignIn = async () => {
     try {
@@ -13,15 +14,16 @@ const SignIn = () => {
       if (response.status === 200) {
         setSignInMessage("Sign in successful!");
         setSignInUser({ username: "", password: "" });
+        setUserId(response.data.user.id);
+        Navigate('/userprofile');
+
       }
-      navigate('/userprofile');
-    }
-    catch (error) {
+    } catch (error) {
       console.error('There was a problem with the POST request:', error);
       console.log(error.response.data);
       setSignInMessage("There was a problem signing in.");
     }
-  }
+  };
 
   return (
     <div>
@@ -40,6 +42,7 @@ const SignIn = () => {
       <br />
       <button onClick={handleSignIn}>Sign In</button>
       <p>{signInMessage}</p>
+      {userId && <UserProfile userId={userId} />} {/* Conditionally render UserProfile */}
     </div>
   );
 };
