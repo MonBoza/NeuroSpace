@@ -4,12 +4,16 @@ from django.db import models
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    username = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True)
     bio = models.TextField(max_length=500, null=True)
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, default='profile_pics/default.jpg')
     date_created = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.user.username
+        if self.user:
+            return self.user.username
+        else:
+            return "UserProfile"
     
 class Forum(models.Model):
     title = models.CharField(max_length=100)

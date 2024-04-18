@@ -11,7 +11,7 @@ from rest_framework.authentication import SessionAuthentication, TokenAuthentica
 from .models import Forum, Comment, Like, UserProfile
 
 # UserProfile Views
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def userprofile_list(request):
     if request.method == 'GET':
         userprofiles = UserProfile.objects.all()
@@ -24,12 +24,6 @@ def userprofile_list(request):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
     
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def userprofile_detail(request, id):
-    userprofile = get_object_or_404(UserProfile, pk=id)
-    serializer = UserProfileSerializer(userprofile)
-    return Response(serializer.data)
 
 # Forum Views
 @api_view(['GET', 'POST'])
