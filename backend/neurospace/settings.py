@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CORS_ALLOW_ALL_METHODS = True
+CORS_ORIGIN_ALLOW_ALL = True
+
+REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny']}
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',  

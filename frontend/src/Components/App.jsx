@@ -2,10 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./SignIn";
 import Register from "./Register";
 import UserProfile from "./UserProfile";
+import Home from "./Home";
 
 function App() {
   return (
     <BrowserRouter>
+    <Home />
       <div className="App">
         <Routes>
           <Route path="/" element={<SignIn />} />
