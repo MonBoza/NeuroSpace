@@ -16,6 +16,8 @@ const SignIn = () => {
       const response = await axios.post('http://127.0.0.1:8000/login', signInUser);
       if (response.status === 201 || response.status === 215) {
         const { token, user } = response.data; // Extract token from response
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", user.username);
         setToken(token); // Save token to state
         setSignInMessage("Sign in successful!");
         setIsAuthenticated(true);

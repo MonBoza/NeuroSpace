@@ -4,6 +4,7 @@ import Register from "./Register";
 import UserProfile from "./UserProfile";
 import Home from "./Home";
 import "../input.css"
+import TopicForm from "./Forum/TopicForm";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/userprofile" element={<UserProfile />} />
-          {/* <Route path="/forum" element={<Forum/>} /> */}
+          <Route path="/topicForm" element={< TopicForm/>}/>
         </Routes>
       </div>
     </BrowserRouter>

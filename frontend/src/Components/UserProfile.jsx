@@ -2,11 +2,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import EditProfileForm from "./EditProfile";
+import Home from "./Home";
+import TopicForm from "./Forum/TopicForm";
 
 const UserProfile = ({ signInUser, userName, token }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const storedToken = localStorage.getItem('token');
+  console.log(storedToken);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -17,7 +21,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
           "http://127.0.0.1:8000/test_token",
           {
             headers: {
-              Authorization: `Token ${token}`,
+              Authorization: `Token ${storedToken}`,
             },
           }
         );
@@ -57,7 +61,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
     try {
       const response = await axios.post("http://127.0.0.1:8000/logout", {
         headers: {
-          Authorization: `Token ${token}`,
+          Authorization: `Token ${storedToken}`,
         },
       });
 
@@ -65,7 +69,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
       if (response.status === 200) {
         ("Sign out successful!");
         // Redirect the user to the homepage or login page
-        navigate("/Home");
+        navigate("/");
       } else {
         console.error("Sign out failed. Unexpected response:", response);
       }
@@ -103,6 +107,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
               Please sign in to view your profile.
             </p>
           )}
+         <TopicForm userName={userName} token={token} /> 
         </div>
       </div>
     </div>

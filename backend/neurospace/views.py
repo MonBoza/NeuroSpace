@@ -33,6 +33,7 @@ def userprofile_detail(request, username):
 
     serializer = UserProfileSerializer(userprofile)
     return Response(serializer.data)
+
 # Forum Views
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -79,6 +80,7 @@ def comment_list(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
+    
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])

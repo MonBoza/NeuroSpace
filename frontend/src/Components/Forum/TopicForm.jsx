@@ -9,22 +9,27 @@ function TopicForm() {
   const [userProfile, setUserProfile] = useState(null);
   const [submittedData, setSubmittedData] = useState(null); 
 
-  useEffect(() => {
-    fetchUserName();
-  }, []);
+//   useEffect(() => {
+//     const checkTokenAndFetchProfile = async () => {
+//       try {
+//         const token = localStorage.getItem('token');
+//         const userName = localStorage.getItem('username');
+//         const response = await axios.get(`http://127.0.0.1:8000/userprofile/${userName}`, {
+//           headers: {
+//             Authorization: `Token ${token}`,
+//           },
+//         });
+//   } catch (error) { 
+//     console.error('Error fetching user profile:', error);
+//     setError('There was a problem fetching the user profile.');
+//   }
+//   setLoading(false);
+// });
 
-  const fetchUserName = async () => {
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/login');
-      if (response.status === 200 && response.data.logged_in) {
-        const userProfileResponse = await axios.get('http://127.0.0.1:8000/userprofile/');
-        setUserName(userProfileResponse.data.username);
-        setUserProfile(userProfileResponse.data);
-      }
-    } catch (error) {
-      console.error('Error fetching user name:', error);
-    }
-  };
+
+function TopicForm() {
+  const [entry, setEntry] = useState({ Topic: '', issue: '' });
+  const [submittedData, setSubmittedData] = useState(null);
 
   const handleFormSubmission = async (event) => {
     event.preventDefault(); 
@@ -33,20 +38,20 @@ function TopicForm() {
       const response = await axios.post('http://127.0.0.1:8000/forum/', {
         topic: entry.Topic,
         issue: entry.issue,
-        username: userName, 
+        username: localStorage.getItem('username'), 
       });
       if (response.status === 201) {
         setSubmittedData({
           topic: entry.Topic,
           issue: entry.issue,
-          username: userName,
+          username: localStorage.getItem('username'),
           timestamp: new Date().toLocaleString(), 
         });
         setEntry({ Topic: '', issue: '' });
       }
     } catch (error) {
       console.error('There was a problem with the POST request:', error);
-      setError('There was a problem submitting the form.');
+      // Handle error submission
     }
   };
 
@@ -75,11 +80,12 @@ function TopicForm() {
           <p>Issue: {submittedData.issue}</p>
           <p>Submitted by: {submittedData.username}</p>
           <p>Timestamp: {submittedData.timestamp}</p>
-          {userProfile && <img src={submittedData.userProfilePic} alt="User Profile" style={{ width: '100px', height: '100px' }} />}
+          {userProfile && <img src={`http://127.0.0.1:8000${userProfile?.profile_pic}`} alt="User Profile" style={{ width: '100px', height: '100px' }} />}
         </div>
       )}
     </>
   );
+}
 }
 
 export default TopicForm;
