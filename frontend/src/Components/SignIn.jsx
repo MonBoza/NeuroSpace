@@ -27,7 +27,7 @@ const SignIn = () => {
       }
     } catch (error) {
       console.error('There was a problem with the POST request:', error);
-      console.log(error.response.data);
+    
       setSignInMessage("There was a problem signing in.");
     }
   };

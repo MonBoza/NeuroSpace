@@ -7,11 +7,9 @@ const UserProfile = ({ signInUser, userName, token }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  console.log(userName);
-  console.log(token);
+
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(userName);
     const checkTokenAndFetchProfile = async () => {
       try {
         // Check if the token is valid by making a request to the test_token endpoint
@@ -23,7 +21,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
             },
           }
         );
-        console.log(tokenResponse);
+
         if (tokenResponse.status === 200) {
           // Token is valid, fetch the user profile data
           const profileResponse = await axios.get(
@@ -31,7 +29,6 @@ const UserProfile = ({ signInUser, userName, token }) => {
             {}
           );
           setUserProfile(profileResponse.data);
-          console.log(userProfile);
         }
       } catch (error) {
         console.error("Error fetching user profile:", error);
@@ -66,7 +63,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
 
       // Check if the sign-out request was successful
       if (response.status === 200) {
-        console.log("Sign out successful!");
+        ("Sign out successful!");
         // Redirect the user to the homepage or login page
         navigate("/Home");
       } else {
