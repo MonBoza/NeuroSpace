@@ -52,7 +52,7 @@ function TopicForm() {
 
   return (
     <>
-      <form onSubmit={handleFormSubmission}>
+      <form className="" onSubmit={handleFormSubmission}>
         <input
           type='text'
           name='Topic'

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import EditProfileForm from "./EditProfile";
 
 const UserProfile = ({ signInUser, userName, token }) => {
   const [userProfile, setUserProfile] = useState(null);
@@ -12,20 +13,23 @@ const UserProfile = ({ signInUser, userName, token }) => {
   useEffect(() => {
     console.log(userName);
     const checkTokenAndFetchProfile = async () => {
-    
       try {
         // Check if the token is valid by making a request to the test_token endpoint
-        const tokenResponse = await axios.get("http://127.0.0.1:8000/test_token", {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        });
-          console.log(tokenResponse);
+        const tokenResponse = await axios.get(
+          "http://127.0.0.1:8000/test_token",
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
+        console.log(tokenResponse);
         if (tokenResponse.status === 200) {
           // Token is valid, fetch the user profile data
-          const profileResponse = await axios.get(`http://127.0.0.1:8000/userprofile/${userName}`, {
-    
-          });
+          const profileResponse = await axios.get(
+            `http://127.0.0.1:8000/userprofile/${userName}`,
+            {}
+          );
           setUserProfile(profileResponse.data);
           console.log(userProfile);
         }
@@ -54,18 +58,17 @@ const UserProfile = ({ signInUser, userName, token }) => {
   }
   const handleSignOut = async () => {
     try {
-    
       const response = await axios.post("http://127.0.0.1:8000/logout", {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-  
+
       // Check if the sign-out request was successful
       if (response.status === 200) {
         console.log("Sign out successful!");
         // Redirect the user to the homepage or login page
-        navigate("/home");
+        navigate("/Home");
       } else {
         console.error("Sign out failed. Unexpected response:", response);
       }
@@ -75,13 +78,36 @@ const UserProfile = ({ signInUser, userName, token }) => {
   };
 
   return (
-    <div>
-      <h1>{userName}'s Profile</h1>
-      <img src={userProfile?.profile_pic} alt="Profile_pic" style={{ width: "100px", height: "100px" }} />
-      <p>Bio: {userProfile?.bio}</p>
-      <button onClick={handleSignOut}>Sign Out</button>
-      {!userName && <p>Please sign in to view your profile.</p>}
-      
+    <div className="max-w-screen-md mx-auto">
+      <div className="w-1/2 mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="p-4">
+          <h1 className="text-xl font-bold mb-2">{userName}'s Profile</h1>
+          <div className="flex justify-center items-center mb-4">
+            <img
+              src={`http://127.0.0.1:8000${userProfile?.profile_pic}`}
+              alt="Profile Pic"
+              className="w-16 h-16 rounded-full mr-4"
+            />
+            <p className="text-gray-700">{userProfile?.bio}</p>
+          </div>
+          <div className="flex justify-between">
+            <button
+              onClick={handleSignOut}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Sign Out
+            </button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Edit Profile
+            </button>
+          </div>
+          {!userName && (
+            <p className="text-gray-600 mt-2">
+              Please sign in to view your profile.
+            </p>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

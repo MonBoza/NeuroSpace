@@ -3,14 +3,15 @@ import SignIn from "./SignIn";
 import Register from "./Register";
 import UserProfile from "./UserProfile";
 import Home from "./Home";
+import "../input.css"
 
 function App() {
   return (
-    <BrowserRouter>
-    <Home />
+    <BrowserRouter> 
       <div className="App">
         <Routes>
-          <Route path="/" element={<SignIn />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/userprofile" element={<UserProfile />} />
           {/* <Route path="/forum" element={<Forum/>} /> */}
