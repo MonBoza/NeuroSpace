@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = ({ signInUser, userName, token }) => {
   const [userProfile, setUserProfile] = useState(null);
@@ -7,7 +8,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
   const [error, setError] = useState("");
   console.log(userName);
   console.log(token);
-
+  const navigate = useNavigate();
   useEffect(() => {
     console.log(userName);
     const checkTokenAndFetchProfile = async () => {
@@ -51,12 +52,34 @@ const UserProfile = ({ signInUser, userName, token }) => {
   if (!userProfile) {
     return <p>No profile data available.</p>;
   }
+  const handleSignOut = async () => {
+    try {
+    
+      const response = await axios.post("http://127.0.0.1:8000/logout", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+  
+      // Check if the sign-out request was successful
+      if (response.status === 200) {
+        console.log("Sign out successful!");
+        // Redirect the user to the homepage or login page
+        navigate("/home");
+      } else {
+        console.error("Sign out failed. Unexpected response:", response);
+      }
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   return (
     <div>
       <h1>{userName}'s Profile</h1>
-      <img src={userProfile?.profile_pic} alt="Profilepic" style={{ width: "100px", height: "100px" }} />
+      <img src={userProfile?.profile_pic} alt="Profile_pic" style={{ width: "100px", height: "100px" }} />
       <p>Bio: {userProfile?.bio}</p>
+      <button onClick={handleSignOut}>Sign Out</button>
       {!userName && <p>Please sign in to view your profile.</p>}
       
     </div>
