@@ -33,7 +33,7 @@ Authorization: Token ae9a24198db785e2314720d6ff38b6b72b5874d1
 ###
 POST http://127.0.0.1:8000/UserProfile
 Content-Type: application/json
-Authorization: Token 0d44b3b30abba119acc03839fb7bf76115185cdc
+Authorization: Token ef6ab3a21f70e176733bb5f7db5f3d291e9923aa
     
     {
         
@@ -52,9 +52,12 @@ Content-Type: application/json
 ###
 POST  http://127.0.0.1:8000/forum/
 Content-Type: application/json
-Authorization: Token 0d44b3b30abba119acc03839fb7bf76115185cdc
+Authorization: Token ef6ab3a21f70e176733bb5f7db5f3d291e9923aa
 
 {
     "title": "Test Post",
     "description" : "I dont know what Im doing at the moment",
+    "username" : "Test3",
+    "user" : 11,
+
 }
