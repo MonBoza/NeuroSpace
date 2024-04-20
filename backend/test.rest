@@ -37,7 +37,7 @@ Authorization: Token ef6ab3a21f70e176733bb5f7db5f3d291e9923aa
     
     {
         
-        "username": "Test3",
+        "username" : "Test3",
         "bio": "I am a test user",
         "profile_pic": "https://www.google.com",
         
@@ -50,14 +50,14 @@ Content-Type: application/json
 {}
 
 ###
-POST  http://127.0.0.1:8000/forum/
+GET  http://127.0.0.1:8000/forum/
+Content-Type: application/json
+Authorization: Token ef6ab3a21f70e176733bb5f7db5f3d291e9923aa
+    
+    {}
+###
+GET http://127.0.0.1:8000/forum/
 Content-Type: application/json
 Authorization: Token ef6ab3a21f70e176733bb5f7db5f3d291e9923aa
 
-{
-    "title": "Test Post",
-    "description" : "I dont know what Im doing at the moment",
-    "username" : "Test3",
-    "user" : 11,
-
-}
+{}

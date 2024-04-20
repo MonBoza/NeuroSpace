@@ -4,7 +4,6 @@ from django.db import models
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    username = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True)
     bio = models.TextField(max_length=500, null=True)
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, default='media/profile_pics/default.jpg')
     date_created = models.DateTimeField(auto_now_add=True)
@@ -16,7 +15,7 @@ class UserProfile(models.Model):
             return "UserProfile"
     
 class Forum(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=400)
     description = models.TextField(max_length=500)
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

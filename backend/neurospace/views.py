@@ -9,12 +9,13 @@ from .serializers import UserSerializer, ForumSerializer, CommentSerializer, Lik
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from .models import Forum, Comment, Like, UserProfile
+from django.contrib.auth.decorators import login_required
 
 # UserProfile Views
 @api_view(['POST', 'GET'])
 def userprofile_list(request):
     if request.method == 'GET':
-        userprofiles = UserProfile.objects.all(pk=id)
+        userprofiles = UserProfile.objects.all()
         serializer = UserProfileSerializer(userprofiles, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
@@ -36,21 +37,24 @@ def userprofile_detail(request, username):
 
 # Forum Views
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-def forum_list(request):
+@login_required # Add this decorator to require authentication
+def forum_list(request, *args, **kwargs):
     if request.method == 'GET':
         forums = Forum.objects.all()
         serializer = ForumSerializer(forums, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = ForumSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
-
+        if request.user.is_authenticated:  # Check if the user is authenticated
+            serializer = ForumSerializer(data=request.data, context={'request': request})
+            if serializer.is_valid():
+                serializer.save(user=request.user)
+                return Response(serializer.data, status=201)
+            return Response(serializer.errors, status=400)
+        else:
+            return Response({"error": "User is not authenticated"}, status=401)
+        
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([IsAuthenticated])
+@login_required
 def forum_detail(request, pk):
     forum = get_object_or_404(Forum, pk=pk)
     if request.method == 'GET':
@@ -68,7 +72,7 @@ def forum_detail(request, pk):
 
 # comment views
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+@login_required
 def comment_list(request):
     if request.method == 'GET':
         comments = Comment.objects.all()
@@ -83,7 +87,7 @@ def comment_list(request):
     
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([IsAuthenticated])
+@login_required
 def comment_detail(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     if request.method == 'GET':
@@ -101,12 +105,14 @@ def comment_detail(request, pk):
 
 # Like Views
 @api_view(['GET'])
+@login_required
 def like_list(request):
     likes = Like.objects.all()
     serializer = LikeSerializer(likes, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
+@login_required
 def like_detail(request, id):
     like = get_object_or_404(Like, pk=id)
     serializer = LikeSerializer(like)
