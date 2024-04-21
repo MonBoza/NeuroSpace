@@ -95,3 +95,7 @@ npm run dev
 ## License
 
 NeuroSpace is  licensed under the [MIT License.](https://opensource.org/license/mit)
+
+Email: [MonBoza@gmail.com](mailto:MonBoza@gmail.com)
+
+Copyright (c) April 21, 2024 Monica Barboza
