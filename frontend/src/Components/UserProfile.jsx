@@ -78,42 +78,45 @@ const UserProfile = ({ signInUser, userName, token }) => {
       console.error("Error signing out:", error);
     }
   };
- console.log(userProfile);
+console.log(userProfile);
 
-  return (
-    <div className="max-w-screen-md mx-auto">
-      <div className="w-1/2 mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-        <div className="p-4">
-          <h1 className="text-xl font-bold mb-2">{userName}'s Profile</h1>
-          <div className="flex justify-center items-center mb-4">
-            <img
-              src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
-              alt="Profile Pic"
-              className="w-16 h-16 rounded-full mr-4"
-            />
-            <p className="text-gray-700">{userProfile?.bio}</p>
+return (
+  <div className=" float-left max-w-screen-md mx-auto">
+    <div className="w-1/2 mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="p-4">
+        <h1 className="text-xl font-bold mb-2">{userName}'s Profile</h1>
+        <div className="flex justify-left items-center mb-4">
+          <img
+            src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
+            alt="Profile Pic"
+            className="w-25 display-flex h-25 rounded-full mr-4 float-left"
+          />
           </div>
-          <div className="flex justify-between">
-            <button
-              onClick={handleSignOut}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Sign Out
-            </button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Edit Profile
-            </button>
-          </div>
-          {!userName && (
-            <p className="text-gray-600 mt-2">
-              Please sign in to view your profile.
-            </p>
-          )}
-         <TopicForm userName={userName} token={token} /> 
+          <p className=" text-size-lg text-stone-900">About Me: {userProfile?.bio}</p>
+      
+        <div className="flex justify-between">
+          <button
+            onClick={handleSignOut}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Sign Out
+          </button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Edit Profile
+          </button>
         </div>
+        {!userName && (
+          <p className="text-gray-600 mt-2">
+            Please sign in to view your profile.
+          </p>
+        )}
       </div>
     </div>
-  );
+    <div>
+      <TopicForm userName={userName} token={token} userProfile={userProfile}/>
+    </div>
+  </div>
+);
 };
 
 export default UserProfile;

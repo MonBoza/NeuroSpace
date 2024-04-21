@@ -55,9 +55,7 @@ def forum_list(request):
         return Response(serializer.errors, status=400)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@login_required
-@authentication_classes([SessionAuthentication, TokenAuthentication])
-@permission_classes([IsAuthenticated])
+
 def forum_detail(request):
     forum = get_object_or_404(Forum, )
     if request.method == 'GET':

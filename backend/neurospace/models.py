@@ -25,7 +25,7 @@ class Forum(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Forum, on_delete=models.CASCADE)
+    forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
     content = models.TextField(max_length=500)
     date = models.DateTimeField(auto_now_add=True)
 
@@ -34,7 +34,7 @@ class Comment(models.Model):
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Forum, on_delete=models.CASCADE)
+    forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.user.username} likes {self.post.title}"

@@ -5,6 +5,7 @@ import UserProfile from "./UserProfile";
 import Home from "./Home";
 import "../input.css"
 import TopicForm from "./Forum/TopicForm";
+import ForumList from "./Forum/ForumList";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/topicForm" element={< TopicForm/>}/>
+          <Route path="/forumList" element={< ForumList/>}/>
         </Routes>
       </div>
     </BrowserRouter>
