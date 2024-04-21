@@ -6,10 +6,14 @@ import Home from "./Home";
 import "../input.css"
 import TopicForm from "./Forum/TopicForm";
 import ForumList from "./Forum/ForumList";
+import Resource from "./Resource";
+import Footer from "./Footer";
+import Header from "./Header";
 
 function App() {
   return (
     <BrowserRouter> 
+    <Header/>
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -18,8 +22,10 @@ function App() {
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/topicForm" element={< TopicForm/>}/>
           <Route path="/forumList" element={< ForumList/>}/>
+          <Route path="/Resources" element={<Resource />} />
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

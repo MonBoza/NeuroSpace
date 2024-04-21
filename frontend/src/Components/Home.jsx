@@ -30,3 +30,5 @@ const Home = () => {
 }
 
 export default Home;
+
+// style home to match header
