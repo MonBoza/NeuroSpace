@@ -5,7 +5,7 @@ from django.db import models
 class UserProfile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, null=True)
-    profile_pic = models.ImageField(upload_to='profile_pics/', null=True, default='media/profile_pics/default.jpg')
+    profile_pic = models.ImageField(upload_to='profile_pics/', null=True, default='profile_pics/default.jpg')
     date_created = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

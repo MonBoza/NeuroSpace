@@ -25,6 +25,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
             },
           }
         );
+        console.log(tokenResponse);
 
         if (tokenResponse.status === 200) {
           // Token is valid, fetch the user profile data
@@ -77,6 +78,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
       console.error("Error signing out:", error);
     }
   };
+ console.log(userProfile);
 
   return (
     <div className="max-w-screen-md mx-auto">
@@ -85,7 +87,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
           <h1 className="text-xl font-bold mb-2">{userName}'s Profile</h1>
           <div className="flex justify-center items-center mb-4">
             <img
-              src={`http://127.0.0.1:8000${userProfile?.profile_pic}`}
+              src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
               alt="Profile Pic"
               className="w-16 h-16 rounded-full mr-4"
             />

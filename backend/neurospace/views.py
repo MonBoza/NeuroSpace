@@ -36,23 +36,21 @@ def userprofile_detail(request, username):
     return Response(serializer.data)
 
 # Forum Views
+
 @api_view(['GET', 'POST'])
-@login_required # Add this decorator to require authentication
-def forum_list(request, *args, **kwargs):
+@login_required
+def forum_list(request):
     if request.method == 'GET':
         forums = Forum.objects.all()
         serializer = ForumSerializer(forums, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        if request.user.is_authenticated:  # Check if the user is authenticated
-            serializer = ForumSerializer(data=request.data, context={'request': request})
-            if serializer.is_valid():
-                serializer.save(user=request.user)
-                return Response(serializer.data, status=201)
-            return Response(serializer.errors, status=400)
-        else:
-            return Response({"error": "User is not authenticated"}, status=401)
-        
+        serializer = ForumSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
 @api_view(['GET', 'PUT', 'DELETE'])
 @login_required
 def forum_detail(request, pk):
@@ -69,6 +67,7 @@ def forum_detail(request, pk):
     elif request.method == 'DELETE':
         forum.delete()
         return Response({"message": "Forum deleted successfully."}, status=204)
+
 
 # comment views
 @api_view(['GET', 'POST'])
@@ -127,23 +126,31 @@ def login(request):
   token, created = Token.objects.get_or_create(user=user)
   serializer = UserSerializer(instance=user)
   return Response({"token": token.key, "user": serializer.data}, status=status.HTTP_201_CREATED)
-
 @api_view(['POST'])
 def signup(request):
-    serializer = UserSerializer(data=request.data)
-    if serializer.is_valid():
-        user = serializer.save() 
-        user.set_password(request.data['password'])  
-        user.save()  
-        UserProfile.objects.create(user=user)  
-        token = Token.objects.create(user=user)  
-        return Response({"token": token.key, "user": serializer.data}, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # Assuming you create a combined serializer or use separate serializers for user and profile
+    user_serializer = UserSerializer(data=request.data)
+    if user_serializer.is_valid():
+        user = user_serializer.save()
+        profile_data = {
+            'bio': request.data.get('bio'),
+            'profile_pic': request.FILES.get('profile_pic')
+        }
+        profile_serializer = UserProfileSerializer(data=profile_data)
+        if profile_serializer.is_valid():
+            profile_serializer.save(user=user)
+            return Response({
+                "message": "User and profile created successfully!",
+                "user": user_serializer.data,
+                "profile": profile_serializer.data
+            }, status=status.HTTP_201_CREATED)
+        user.delete()  # Roll back user creation if profile is invalid
+        return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 from django.contrib.auth import logout as auth_logout
 
 @api_view(['POST'])
-
 def logout(request):
     auth_logout(request)
     return Response({"detail": "Logged out successfully."}, status=status.HTTP_200_OK)

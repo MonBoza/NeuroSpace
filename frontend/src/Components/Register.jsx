@@ -35,37 +35,45 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h1>Register For an Account</h1>
+    <div className="container mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Register For an Account</h1>
       <form>
         <input 
+          className="border border-gray-300 rounded-md px-4 py-2 mb-2"
           type="text" 
           placeholder="Username" 
           value={registerUser.username}
           onChange={(e) => setRegisterUser({ ...registerUser, username: e.target.value })} />
         <br/>
         <input 
+          className="border border-gray-300 rounded-md px-4 py-2 mb-2"
           type="email" 
           placeholder="Email" 
           value={registerUser.email} 
           onChange={(e) => setRegisterUser({ ...registerUser, email: e.target.value })}/>
         <br/>
         <input 
+          className="border border-gray-300 rounded-md px-4 py-2 mb-2"
           type="password" 
           placeholder="Password" 
           value={registerUser.password} 
           onChange={(e) => setRegisterUser({...registerUser, password: e.target.value})}/>
         <br/>
         <textarea 
+          className="border border-gray-300 rounded-md px-4 py-2 mb-2"
           placeholder="Bio" 
           value={userProfile.bio} 
           onChange={(e) => setUserProfile({ ...userProfile, bio: e.target.value })}/>
         <br/>
         <input 
+          className="border border-gray-300 rounded-md px-4 py-2 mb-2"
           type="file" 
           onChange={(e) => setUserProfile({ ...userProfile, profile_pic: e.target.files[0] })}/>
         <br/>
-        <button type="button" onClick={handleRegister}>Register</button>
+        <button 
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          type="button" 
+          onClick={handleRegister}>Register</button>
       </form>
       <p>{registerMessage}</p>
     </div>
