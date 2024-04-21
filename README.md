@@ -43,6 +43,17 @@ Join us at NeuroSpace and be part of a community that celebrates diversity, fost
 
 ## Setup/Installation Requirements
 
+- Open terminal or command prompt
+- Clone the repository by running the following command to your desktop:
+
+```bash
+git clone https://github.com/MonBoza/NueroSpace.git
+```
+
+- Make sure .gitignore is added to the repository
+- Navigate to the NeuroSpace directory and follow the front and backend setup below
+
+
 ### Back end setup
 
 1) navigate to the Back end directory and then the NeuroSpace directory by running the following in the command line
@@ -82,3 +93,5 @@ npm run dev
 ## Known Bugs
 
 ## License
+
+NeuroSpace is  licensed under the [MIT License.](https://opensource.org/license/mit)
