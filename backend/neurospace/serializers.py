@@ -15,9 +15,14 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class ForumSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+
     class Meta:
         model = Forum
         fields = ['id', 'title', 'description', 'date', 'user']
+
+    def get_user(self, obj):
+        return obj.user.username
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:

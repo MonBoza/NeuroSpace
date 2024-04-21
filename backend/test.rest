@@ -52,18 +52,16 @@ Content-Type: application/json
 ###
 POST  http://127.0.0.1:8000/forum/
 Content-Type: application/json
-Authorization: Token ef6ab3a21f70e176733bb5f7db5f3d291e9923aa
+Authorization: Token 0815bb872fd7506b473a670eef9839af488b5cae
     
   {
-   "title" : "please work ",
-   "description" : "Im so over this",
-    "username": "MonicaB"
-}
+   "title" : "Timmy is ",
+   "description" : "My best bro and my lucky charm",
+   "user" : "36"
+    }
 ###
 GET http://127.0.0.1:8000/forum/
 Content-Type: application/json
-Authorization: Token ef6ab3a21f70e176733bb5f7db5f3d291e9923aa
+Authorization: Token 0815bb872fd7506b473a670eef9839af488b5cae
 
-{
-
-}
+{}

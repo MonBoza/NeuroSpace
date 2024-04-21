@@ -12,9 +12,10 @@ urlpatterns = [
     re_path('signup', views.signup),
     re_path('logout', views.logout),
     re_path('test_token', views.test_token),
+    re_path('forum/', views.forum_list, name='forum_list'),
     path('userprofile/', views.userprofile_list, name='userprofile_list'),
     path('userprofile/<str:username>/', views.userprofile_detail, name='userprofile_detail'),
-    re_path('forum/', views.forum_list, name='forum_list'),
+   
     path('forum/<int:id>/', views.forum_detail, name='forum_detail'),
     path('comment/', views.comment_list, name='comment_list'),
     path('comment/<int:id>/', views.comment_detail, name='comment_detail'),

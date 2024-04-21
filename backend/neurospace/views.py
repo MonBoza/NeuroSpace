@@ -37,8 +37,11 @@ def userprofile_detail(request, username):
 
 # Forum Views
 
+
 @api_view(['GET', 'POST'])
 @login_required
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def forum_list(request):
     if request.method == 'GET':
         forums = Forum.objects.all()
@@ -53,8 +56,10 @@ def forum_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @login_required
-def forum_detail(request, pk):
-    forum = get_object_or_404(Forum, pk=pk)
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def forum_detail(request):
+    forum = get_object_or_404(Forum, )
     if request.method == 'GET':
         serializer = ForumSerializer(forum)
         return Response(serializer.data)
@@ -72,6 +77,8 @@ def forum_detail(request, pk):
 # comment views
 @api_view(['GET', 'POST'])
 @login_required
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_list(request):
     if request.method == 'GET':
         comments = Comment.objects.all()
@@ -87,6 +94,8 @@ def comment_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @login_required
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_detail(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     if request.method == 'GET':
@@ -105,6 +114,8 @@ def comment_detail(request, pk):
 # Like Views
 @api_view(['GET'])
 @login_required
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def like_list(request):
     likes = Like.objects.all()
     serializer = LikeSerializer(likes, many=True)
@@ -112,6 +123,8 @@ def like_list(request):
 
 @api_view(['GET'])
 @login_required
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def like_detail(request, id):
     like = get_object_or_404(Like, pk=id)
     serializer = LikeSerializer(like)
