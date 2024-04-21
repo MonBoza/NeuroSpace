@@ -54,10 +54,17 @@ def forum_list(request):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
-@api_view(['GET', 'PUT', 'DELETE'])
 
-def forum_detail(request):
-    forum = get_object_or_404(Forum, )
+
+from django.http import JsonResponse
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def forum_detail(request, id):
+    try:
+        forum = Forum.objects.get(id=id)
+    except Forum.DoesNotExist:
+        return JsonResponse({'error': 'Forum does not exist'}, status=404)
+
     if request.method == 'GET':
         serializer = ForumSerializer(forum)
         return Response(serializer.data)
@@ -70,6 +77,7 @@ def forum_detail(request):
     elif request.method == 'DELETE':
         forum.delete()
         return Response({"message": "Forum deleted successfully."}, status=204)
+
 
 
 # comment views
