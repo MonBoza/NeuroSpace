@@ -66,10 +66,10 @@ def forum_detail(request, id):
         return JsonResponse({'error': 'Forum does not exist'}, status=404)
 
     if request.method == 'GET':
-        serializer = ForumSerializer(forum)
+        serializer = ForumSerializer(forum)  # Pass the instance of the Forum object
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = ForumSerializer(forum, data=request.data)
+        serializer = ForumSerializer(forum, data=request.data, partial=True)  # Allow partial updates
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

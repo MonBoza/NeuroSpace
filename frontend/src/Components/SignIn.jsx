@@ -35,17 +35,18 @@ const SignIn = () => {
   };
 
   return (
-    <div>
+    <div className="container mx-auto justify-center">
       {isAuthenticated ? (
         <UserProfile signInUser={signInUser} token={token} userName={userName}  />
       ) : (
         <>
-          <h1>Sign In</h1>
+          <h1 className="text-2xl font-bold mb-4">Sign In</h1>
           <input
             type="text"
             placeholder="Username"
             value={signInUser.username}
             onChange={(e) => setSignInUser({ ...signInUser, username: e.target.value })}
+            className="border border-gray-300 rounded-md px-4 py-2 mb-2"
           />
           <br />
           <input
@@ -53,9 +54,14 @@ const SignIn = () => {
             placeholder="Password"
             value={signInUser.password}
             onChange={(e) => setSignInUser({ ...signInUser, password: e.target.value })}
+            className="border border-gray-300 rounded-md px-4 py-2 mb-2"
           />
           <br />
-          <button onClick={handleSignIn}>Sign In</button>
+          <button onClick={handleSignIn} className="bg-amber-500 text-white px-4 py-2 rounded-md">
+            Sign In
+          </button>
+          <br />
+        
           <p>{signInMessage}</p>
         </>
       )}
