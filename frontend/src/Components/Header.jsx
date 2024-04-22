@@ -6,9 +6,10 @@ const Header = () => {
     <header className="">
       <div className="">
         <img 
+          id='logo'
           src={Logo} 
           alt="Logo"
-          className="h-1/5 w-1/5"
+          className="h-1/5 w-1/5 rounded-1/2"
         />
       </div>
     </header>
