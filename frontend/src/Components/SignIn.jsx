@@ -35,36 +35,38 @@ const SignIn = () => {
   };
 
   return (
-    <div className="container mx-auto justify-center">
-      {isAuthenticated ? (
-        <UserProfile signInUser={signInUser} token={token} userName={userName}  />
-      ) : (
-        <>
-          <h1 className="text-2xl font-bold mb-4">Sign In</h1>
-          <input
-            type="text"
-            placeholder="Username"
-            value={signInUser.username}
-            onChange={(e) => setSignInUser({ ...signInUser, username: e.target.value })}
-            className="border border-gray-300 rounded-md px-4 py-2 mb-2"
-          />
-          <br />
-          <input
-            type="password"
-            placeholder="Password"
-            value={signInUser.password}
-            onChange={(e) => setSignInUser({ ...signInUser, password: e.target.value })}
-            className="border border-gray-300 rounded-md px-4 py-2 mb-2"
-          />
-          <br />
-          <button onClick={handleSignIn} className="bg-amber-500 text-white px-4 py-2 rounded-md">
-            Sign In
-          </button>
-          <br />
-        
-          <p>{signInMessage}</p>
-        </>
-      )}
+    <div className="flex justify-center items-center h-screen">
+      <div className="bg-white rounded-lg shadow-md p-8">
+        {isAuthenticated ? (
+          <UserProfile signInUser={signInUser} token={token} userName={userName}  />
+        ) : (
+          <>
+            <h1 className="text-2xl font-bold mb-4">SIGN IN</h1>
+            <input
+              type="text"
+              placeholder="Username"
+              value={signInUser.username}
+              onChange={(e) => setSignInUser({ ...signInUser, username: e.target.value })}
+              className="border border-gray-300 rounded-md px-4 py-2 mb-2"
+            />
+            <br />
+            <input
+              type="password"
+              placeholder="Password"
+              value={signInUser.password}
+              onChange={(e) => setSignInUser({ ...signInUser, password: e.target.value })}
+              className="border border-gray-300 rounded-md px-4 py-2 mb-2"
+            />
+            <br />
+            <button onClick={handleSignIn} className="bg-amber-500 text-white px-4 py-2 rounded-md">
+              Sign In
+            </button>
+            <br />
+          
+            <p>{signInMessage}</p>
+          </>
+        )}
+      </div>
     </div>
   );
 };

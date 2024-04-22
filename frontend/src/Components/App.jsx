@@ -8,12 +8,12 @@ import TopicForm from "./Forum/TopicForm";
 import ForumList from "./Forum/ForumList";
 import Resource from "./Resource";
 import Footer from "./Footer";
-import Header from "./Header";
+import Nav from "./Header";
 
 function App() {
   return (
     <BrowserRouter> 
-    <Header/>
+    <Nav/>
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />

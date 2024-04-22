@@ -81,19 +81,20 @@ const UserProfile = ({ signInUser, userName, token }) => {
 console.log(userProfile);
 
 return (
-  <div className=" float-left max-w-screen-md mx-auto">
-    <div className="w-1/2 mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+  <div >
+    <div className="w-1/2 mx-auto mt-16 bg-white shadow-md rounded-lg">
       <div className="p-4">
         <h1 className="text-xl font-bold mb-2">{userName}'s Profile</h1>
         <div className="flex justify-left items-center mb-4">
           <img
             src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
             alt="Profile Pic"
-            className="w-25 display-flex h-25 rounded-full mr-4 float-left"
+            className="w-15 display-flex h-15 rounded-full mr-4 float-left"
           />
-          </div>
-          <p className=" text-size-lg text-stone-900">About Me: {userProfile?.bio}</p>
-      
+        </div>
+        <div className="flex justify-left items-center mb-4">
+          <p className="text-size-lg text-stone-900">About Me: {userProfile?.bio}</p>
+        </div>
         <div className="flex justify-between">
           <button
             onClick={handleSignOut}

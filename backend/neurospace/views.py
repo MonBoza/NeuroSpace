@@ -1,3 +1,4 @@
+
 from rest_framework import serializers
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
@@ -56,28 +57,30 @@ def forum_list(request):
 
 
 
-from django.http import JsonResponse
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def forum_detail(request, id):
     try:
         forum = Forum.objects.get(id=id)
     except Forum.DoesNotExist:
-        return JsonResponse({'error': 'Forum does not exist'}, status=404)
+        return Response({'error': 'Forum not found'}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = ForumSerializer(forum)  # Pass the instance of the Forum object
+        serializer = ForumSerializer(forum)
         return Response(serializer.data)
+
     elif request.method == 'PUT':
-        serializer = ForumSerializer(forum, data=request.data, partial=True)  # Allow partial updates
+        serializer = ForumSerializer(forum, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=400)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     elif request.method == 'DELETE':
         forum.delete()
-        return Response({"message": "Forum deleted successfully."}, status=204)
-
+        return Response({'message': 'Forum deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
 
 # comment views
@@ -180,3 +183,4 @@ def logout(request):
 @permission_classes([IsAuthenticated])
 def test_token(request):
   return Response("passed for {}". format(request.user.email), status=status.HTTP_200_OK)
+

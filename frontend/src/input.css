@@ -5,7 +5,7 @@
 
 
 header {
-  background-color: rgba(145, 145, 145, 0.338);
+  background-color: rgba(37, 36, 36, 0.917);
   border-bottom: 1px solid #333;
   padding: 10px 0;
   text-align: center;
@@ -46,4 +46,12 @@ h1 {
    font-family: "Finger Paint", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.box {
+  background-color: #3e3e3f;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
