@@ -1,44 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const ForumDetail = () => {
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState('');
+const ForumDetail = ({ forumId }) => {
+  const [forum, setForum] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleCommentChange = (e) => {
-    setNewComment(e.target.value);
-  };
+  useEffect(() => {
+    const fetchForumDetail = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`http://127.0.0.1:8000/forum_detail/${forumId}`);
+        setForum(response.data);
+      } catch (error) {
+        console.error('Error fetching forum detail:', error);
+        setError('There was a problem fetching the forum detail.');
+      }
+      setLoading(false);
+    };
 
-  const handleAddComment = () => {
-    if (newComment.trim() !== '') {
-      setComments([...comments, newComment]);
-      setNewComment('');
+    if (forumId) {
+      fetchForumDetail();
     }
-  };
+  }, [forumId]);
 
   return (
-    <div>
-      <h2>Forum Topic Title</h2>
-      <p>Forum topic content goes here...</p>
-
-      <h3>Comments</h3>
-      {comments.length === 0 ? (
-        <p>No comments yet.</p>
+    <>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : forum ? (
+        <div>
+          <h2>{forum.title}</h2>
+          <p>Description: {forum.description}</p>
+          <p>User: {forum.user}</p>
+        </div>
       ) : (
-        <ul>
-          {comments.map((comment, index) => (
-            <li key={index}>{comment}</li>
-          ))}
-        </ul>
+        <p>No forum selected.</p>
       )}
-
-      <input
-        type="text"
-        value={newComment}
-        onChange={handleCommentChange}
-        placeholder="Add a comment..."
-      />
-      <button onClick={handleAddComment}>Add Comment</button>
-    </div>
+    </>
   );
 };
 
