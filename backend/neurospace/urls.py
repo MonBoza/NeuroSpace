@@ -19,7 +19,7 @@ urlpatterns = [
     path('forum_detail/<int:id>/', views.forum_detail, name='forum_detail'),
     path('comment/', views.comment_list, name='comment_list'),
     path('comment/<int:id>/', views.comment_detail, name='comment_detail'),
-
+    path('forum/comments/<int:id>/', views.get_forum_comments, name='get_forum_comments'),
     path('like/', views.like_list, name='like_list'),
     path('like/<int:id>/', views.like_detail, name='like_detail'),
 

@@ -7,6 +7,7 @@ const Home = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState("");
   const [userName, setUserName] = useState("");
+
   const navigate = useNavigate();
   const handleRegister = () => {
     window.location.href = '/Register';
@@ -14,6 +15,7 @@ const Home = () => {
   const handleSignOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+
     setToken("");
     setUserName("");
     setIsAuthenticated(false);
@@ -26,11 +28,11 @@ const Home = () => {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col lg:flex-row justify-between items-start bg-gradient-to-br from-indigo-800 to-blue-200 shadow-lg p-8">
+      <div className="min-h-screen flex flex-col lg:flex-row justify-between items-star bg-white shadow-lg p-8">
         <div className="lg:w-1/2 p-4">
           <h1 className="text-4xl font-bold mb-8">Welcome to Neurospace</h1>
           <div className="max-w-prose mx-auto text-left py-8">
-            <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-md">
+            <div className="bg-white  rounded-lg shadow-xl">
               <p className="text-lg mb-4 text-gray-800">Here, we're on a journey to explore the fascinating world of neurodiversity.</p>
               <p className="text-lg mb-4 text-gray-800">Join our vibrant community where diversity is celebrated, and uniqueness is embraced!</p>
               <p className="text-lg mb-4 text-gray-800">Discover resources, make connections, and embark on an adventure of self-discovery.</p>
@@ -51,6 +53,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 }

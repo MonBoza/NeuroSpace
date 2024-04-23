@@ -21,9 +21,9 @@ const SignIn = () => {
         setToken(token); // Save token to state
         setSignInMessage("Sign in successful!");
         setIsAuthenticated(true);
-        setUserName(user.username); // Save username to state
+        setUserName(user.username); 
         
-        setSignInUser({username: "", password: "" }); // Clear input fields
+        setSignInUser({username: "", password: "" }); 
         
         
       }

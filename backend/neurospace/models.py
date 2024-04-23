@@ -19,6 +19,7 @@ class Forum(models.Model):
     description = models.TextField(max_length=500)
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comments = models.ManyToManyField(User, through='Comment', related_name='comments')
 
     def __str__(self):
         return self.title

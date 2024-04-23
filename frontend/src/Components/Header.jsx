@@ -1,13 +1,43 @@
-import React, { useState } from 'react';
-import Logo from '../assets/img/logo.jpeg';
+import React, { useState, useEffect } from 'react';
+import Nerospace from '../assets/img/NUEROSPACE.png'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState("");
   const [userName, setUserName] = useState("");
+  const [profile_pic, setProfilePic] = useState("");
+  const [userProfile, setUserProfile] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+ ;
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    const storedUserName = localStorage.getItem("username");
+  
+
+    if (storedToken && storedUserName) {
+      setToken(storedToken);
+      setUserName(storedUserName);
+      setIsAuthenticated(true);
+      // Fetch user profile when authenticated
+      fetchUserProfile(storedUserName);
+ 
+    }
+  }, []);
+
+  const fetchUserProfile = (username) => {
+    axios.get(`http://127.0.0.1:8000/userprofile/${username}/`)
+      .then(response => {
+        setUserProfile(response.data);
+       
+      })
+      .catch(error => {
+        console.error('Error fetching user profile:', error);
+      });
+  };
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
@@ -15,6 +45,7 @@ const Header = () => {
     setToken("");
     setUserName("");
     setIsAuthenticated(false);
+    setUserProfile(null);
     navigate("/");
   };
 
@@ -28,7 +59,7 @@ const Header = () => {
         <div>
           <img 
             id='logo'
-            src={Logo} 
+            src={Nerospace} 
             alt="Logo"
             className="h-1/4 w-1/4 rounded-1/2"
           />
@@ -38,9 +69,17 @@ const Header = () => {
           <a href="/resources" className="text-2xl text-indigo-500 px-10 font-bold">Resources</a>
           <a href="/ForumList" className="text-2xl text-indigo-500 px-10 font-bold">Forum</a>
         </nav>
+        {isAuthenticated && userProfile && (
+          <div className="text-white center">
+            <img src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`} alt="Profile" className="mb-4 w-10 h-10 rounded-full" />
+            <div>
+              <h3 className='text-bold text-red-700'>{userName}</h3>
+            </div>
+          </div>
+        )}
         <div>
           {isAuthenticated ? (
-            <button className="bg-amber-700 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded" onClick={handleSignOut}>
+            <button className="bg-amber-500 hover:bg-amber-600 text-white font-bold  px-4 rounded" onClick={handleSignOut}>
               Sign Out
             </button>
           ) : (

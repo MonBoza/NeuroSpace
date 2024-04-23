@@ -100,11 +100,14 @@ def comment_list(request):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
     
+def get_forum_comments(request):
+    forum_id = request.GET.get('forum')
+    comments = Comment.objects.filter(forum_id=forum_id)
+    serialized_comments = [comment.serialize() for comment in comments]
+    return JsonResponse(serialized_comments, safe=False)
+    
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@login_required
-@authentication_classes([SessionAuthentication, TokenAuthentication])
-@permission_classes([IsAuthenticated])
 def comment_detail(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     if request.method == 'GET':
@@ -148,9 +151,9 @@ def login(request):
   token, created = Token.objects.get_or_create(user=user)
   serializer = UserSerializer(instance=user)
   return Response({"token": token.key, "user": serializer.data}, status=status.HTTP_201_CREATED)
+
 @api_view(['POST'])
 def signup(request):
-    # Assuming you create a combined serializer or use separate serializers for user and profile
     user_serializer = UserSerializer(data=request.data)
     if user_serializer.is_valid():
         user = user_serializer.save()
@@ -183,4 +186,3 @@ def logout(request):
 @permission_classes([IsAuthenticated])
 def test_token(request):
   return Response("passed for {}". format(request.user.email), status=status.HTTP_200_OK)
-

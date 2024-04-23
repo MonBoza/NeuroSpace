@@ -4,11 +4,12 @@ const Resource = () => {
   
   const resources = [
     { category: "Video", name: "Interview NeuroDiverse candidates", link: "https://youtu.be/KZiN85il-4g", description: "Here is a video that is helpful when interviewing neurodivergent candidates." },
-    { category: "Blog", name: "Neuro Diversity Hub", link: "https://www.neurodiversityhub.org/des", description: "A job board" },
+    { category: "Job", name: "Neuro Diversity Hub", link: "https://www.neurodiversityhub.org/des", description: "A job board" },
     { category: "Video", name: "Acing Your Job Interview: A Guide for Neurodivergent Candidates", link: "https://youtu.be/Qqev0iq7-zQ?si=7_09oYqUNWpx7l3x", description: "A video guide on how to ace an interview" }
+
   ];
 
-  // Group resources by category
+
   const groupedResources = resources.reduce((acc, resource) => {
     if (!acc[resource.category]) {
       acc[resource.category] = [];
@@ -16,8 +17,6 @@ const Resource = () => {
     acc[resource.category].push(resource);
     return acc;
   }, {});
-
-  // Render resources grouped by category
   return (
     <div className="mx-auto p-4">
       {Object.entries(groupedResources).map(([category, resources]) => (

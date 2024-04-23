@@ -65,3 +65,14 @@ Content-Type: application/json
 Authorization: Token 0815bb872fd7506b473a670eef9839af488b5cae
 
 {}
+
+###
+POST http://127.0.0.1:8000/comment/
+Content-Type: application/json
+Authorization: Token 0815bb872fd7506b473a670eef9839af488b5cae
+    
+    {
+        "content" : "I agree with you",
+        "forum" : "15",
+        "user" : "36"
+    }

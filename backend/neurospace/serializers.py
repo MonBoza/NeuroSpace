@@ -19,7 +19,7 @@ class ForumSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Forum
-        fields = ['id', 'title', 'description', 'date', 'user']
+        fields = ['id', 'title', 'description', 'date', 'user', 'comments' ]
 
     def get_user(self, obj):
         return obj.user.username
@@ -27,9 +27,9 @@ class ForumSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['id', 'user', 'post', 'content', 'date']
+        fields = ['id', 'user', 'forum', 'content', 'date']
 
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
-        fields = ['id', 'user', 'post']
+        fields = ['id', 'user', 'comment']

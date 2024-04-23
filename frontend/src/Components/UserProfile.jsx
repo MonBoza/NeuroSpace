@@ -66,10 +66,9 @@ const UserProfile = ({ signInUser, userName, token }) => {
         },
       });
 
-      // Check if the sign-out request was successful
       if (response.status === 200) {
         ("Sign out successful!");
-        // Redirect the user to the homepage or login page
+        
         navigate("/");
       } else {
         console.error("Sign out failed. Unexpected response:", response);
@@ -89,7 +88,7 @@ return (
           <img
             src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
             alt="Profile Pic"
-            className="w-15 display-flex h-15 rounded-full mr-4 float-left"
+            className="w-10 display-flex h-10 round mr-4 float-left"
           />
         </div>
         <div className="flex justify-left items-center mb-4">
@@ -113,9 +112,7 @@ return (
         )}
       </div>
     </div>
-    <div>
-      <TopicForm userName={userName} token={token} userProfile={userProfile}/>
-    </div>
+   
   </div>
 );
 };
