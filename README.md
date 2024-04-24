@@ -53,22 +53,21 @@ git clone https://github.com/MonBoza/NueroSpace.git
 - Make sure .gitignore is added to the repository
 - Navigate to the NeuroSpace directory and follow the front and backend setup below
 
-
 ### Back end setup
 
-1) navigate to the Back end directory and then the NeuroSpace directory by running the following in the command line
+1) Navigate to the "backend" directory within the NeuroSpace folder using the command line:
 
 ```bash
 cd backend
 ```
 
-2) Start your virtual environment by running
+2) Activate your virtual environment:
 
 ```bash
 . .venv/bin/activate
 ```
 
-3) Navigate to the NeuroSpace directory and run the following to start the server
+3) Start the server by running:
 
 ```bash
 python manage.py runserver
@@ -76,10 +75,8 @@ python manage.py runserver
 
 ### Front end setup 
 
-  - NOTE Open a second terminal while the back end is running and follow along
-
-1) Navigate the to frontend directory and run the following in your command line to install the packages
-
+ 1) Open a separate terminal window and navigate to the "frontend" directory within the NeuroSpace folder.
+2) Install the required packages:
 ```bash
 npm install
 ```
@@ -91,6 +88,8 @@ npm run dev
 ```
 
 ## Known Bugs
+
+- No known bugs
 
 ## License
 
