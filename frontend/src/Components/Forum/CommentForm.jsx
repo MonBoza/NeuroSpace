@@ -40,8 +40,11 @@ function CommentForm({ forumId }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="flex justify-center items-center h-screen">
+      <div className="bg-white rounded-lg shadow-md p-8">
+      <h2>Add a comment</h2>
+      <form className="border border-gray-300 rounded-md px-4 py-2 mb-2"
+onSubmit={handleSubmit}>
         <label htmlFor="comment">Enter your comment</label>
         <textarea
           id="comment"
@@ -53,6 +56,7 @@ function CommentForm({ forumId }) {
       </form>
       {errorMessage && <p>{errorMessage}</p>}
       {successMessage && <p>{successMessage}</p>}
+    </div>
     </div>
   );
 }
