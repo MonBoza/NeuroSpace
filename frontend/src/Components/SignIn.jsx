@@ -18,6 +18,7 @@ const SignIn = () => {
         const { token, user } = response.data; // Extract token from response
         localStorage.setItem("token", token);
         localStorage.setItem("username", user.username);
+        localStorage.setItem("userId", user.id)
         setToken(token); // Save token to state
         setSignInMessage("Sign in successful!");
         setIsAuthenticated(true);

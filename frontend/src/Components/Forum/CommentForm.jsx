@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function CommentForm({ forumId, userProfile }) {
+function CommentForm({ forumId }) {
   const [content, setContent] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-      if (!userProfile || !userProfile.userId) {
-      setErrorMessage('User profile not found.');
-      return;
-    }
+    const userId = localStorage.getItem('userId');
+    const userName = localStorage.getItem('username');
+    
     if (!token) {
       setErrorMessage('You need to sign in to submit a comment.');
       return;
     }
-
+    
     try {
       const response = await axios.post('http://127.0.0.1:8000/comment/', {
         content: content,
         forum: forumId,
-        user: userProfile.userId,
+        user: userId,
       }, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Token ${token}`,
         },
       });
       if (response.status === 201) {
