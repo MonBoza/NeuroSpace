@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CommentForm from './CommentForm';
+import Linkify from 'react-linkify';
 
 const ForumDetail = ({ forumId }) => {
   const [forum, setForum] = useState(null);
@@ -46,6 +47,12 @@ const ForumDetail = ({ forumId }) => {
   if (error) return <p>{error}</p>;
   if (!forum) return <p>No forum selected.</p>;
 
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+  }
+
   return (
     <>
       <div className='bg-white text-bold justify-self-center w-96 p-4 rounded-lg'>
@@ -54,20 +61,21 @@ const ForumDetail = ({ forumId }) => {
           <p>{forum.description}</p>
         </div>
         <p>{forum.user}</p>
-        <p className='text-left'>Posted: {forum.date}</p>
+        <p className='text-left'>Posted: {formatDate(forum.date)}</p>
         <div className='bg-white text-bold justify-self-center w-1/2 p-4 rounded-lg'>
           <h1 className='font-extrabold '>Replies</h1>
           <ul className='bg-white text bold justify-self-auto'>
             {comments.map(comment => {
               if (comment.forum === forumId) {
-                const commentDate = new Date(comment.date);
-                const options = { month: '2-digit', day: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
-                const formattedCommentDate = commentDate.toLocaleString('en-US', options);
                 return (
                   <li className="border border-gray-300 rounded-md px-4 py-2 mb-2" key={comment.id}>
-                    <div>{comment.content}</div>
+                    <div><Linkify componentDecorator={(href, text, key) => (
+                      <a href={href.startsWith('http') ? href : ''} key={key}>
+                        {text}
+                      </a>
+                    )}>{comment.content}</Linkify></div>
                     <a>User: {storedUserName}</a>
-                    <p>Posted: {formattedCommentDate}</p>
+                    <p>Posted: {formatDate(comment.date)}</p>
                     <hr />
                   </li>
                 );
