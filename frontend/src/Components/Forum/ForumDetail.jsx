@@ -10,6 +10,7 @@ const ForumDetail = ({ forumId }) => {
   const [error, setError] = useState('');
   const storedUserName = localStorage.getItem('username');
   const userProfile = JSON.parse(localStorage.getItem('userProfile')); 
+
   useEffect(() => {
     const fetchForumDetails = async () => {
       try {
@@ -71,14 +72,21 @@ const ForumDetail = ({ forumId }) => {
             if (comment.forum === forumId) {
               return (
                 <li className="bg-gray-100 rounded-lg p-4" key={comment.id}>
-                  <div>
-                    <Linkify componentDecorator={(href, text, key) => (
-                      <a href={href.startsWith('http') ? href : ''} key={key} className="text-blue-500">
-                        {text}
-                      </a>
-                    )}>{comment.content}</Linkify>
+                  <div className="flex items-center mb-2">
+                    <img
+                      src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
+                      alt="Profile Pic"
+                      className="w-8 h-8 rounded-full mr-2"
+                    />
+                    <div>
+                      <Linkify componentDecorator={(href, text, key) => (
+                        <a href={href.startsWith('http') ? href : ''} key={key} className="text-blue-500">
+                          {text}
+                        </a>
+                      )}>{comment.content}</Linkify>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center mt-2 text-gray-600">
+                  <div className="flex justify-between items-center text-gray-600">
                     <p>User: {storedUserName}</p>
                     <p>Posted: {formatDate(comment.date)}</p>
                   </div>
@@ -96,5 +104,6 @@ const ForumDetail = ({ forumId }) => {
   );
 };
 
-
 export default ForumDetail;
+
+// work on getting the user profile pic to display in the post

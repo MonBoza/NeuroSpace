@@ -8,27 +8,23 @@ function ForumList() {
   const [error, setError] = useState('');
   const [selectedForumId, setSelectedForumId] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
-  const storedUserName = localStorage.getItem('username');;
+  const storedUserName = localStorage.getItem('username');
 
   const fetchUserProfile = (username) => {
-    axios.get(`http://127.0.0.1:8000/userprofile/${storedUserName}/`)
+    axios.get(`http://127.0.0.1:8000/userprofile/${username}/`)
       .then(response => {
         setUserProfile(response.data);
-       
       })
       .catch(error => {
         console.error('Error fetching user profile:', error);
       });
   };
 
-
   useEffect(() => {
-
     const fetchForumList = async () => {
       try {
         setLoading(true);
-        fetchUserProfile(userProfile?.user);
-        fetchUserProfile(storedUserName); 
+        fetchUserProfile(storedUserName);
         const token = localStorage.getItem('token');
         const response = await axios.get('http://127.0.0.1:8000/forum/', {
           headers: {
@@ -48,9 +44,11 @@ function ForumList() {
 
     fetchForumList();
   }, []);
+
   const handleForumClick = (forumId) => {
     setSelectedForumId(forumId); 
   };
+
 
   return (
     <>
@@ -64,7 +62,7 @@ function ForumList() {
           >
             Create Your Own Thread
           </button>
-          <div className="w-full max-w-3xl">
+          <div className="w-full max-w-3xl space-y-4">
             {loading ? (
               <p>Loading...</p>
             ) : error ? (
@@ -72,12 +70,19 @@ function ForumList() {
             ) : (
               forums.map(forum => (
                 <div
-                  className="bg-white rounded-lg shadow-md p-6 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
                   key={forum.id}
+                  className="bg-white rounded-lg shadow-md cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
                   onClick={() => handleForumClick(forum.id)}
                 >
-                  <h2 className="text-2xl font-bold mb-2">{forum.title}</h2>
-                  <p className="text-gray-600">Posted by: {forum.user}</p>
+                  <div className="flex items-center p-4">
+                    <img
+                      src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
+                      alt="Profile Pic"
+                      className="w-8 h-8 rounded-full mr-2"
+                    />
+                    <h2 className="text-lg font-bold">{forum.title}</h2>
+                  </div>
+                  <p className="px-4 pb-4 text-gray-600">Posted by: {forum.user}</p>
                 </div>
               ))
             )}
@@ -89,3 +94,5 @@ function ForumList() {
 }
 
 export default ForumList;
+
+//  work on getting the profile pic to display in comments :) and in forum list. I accidentally made it show logged in users profile pic in all comments.
