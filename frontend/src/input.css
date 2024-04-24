@@ -37,7 +37,7 @@ body {
   }
 }
 
-#logo {
+.logo {
   animation: floatUp 3s ease-in-out ;
 }
 

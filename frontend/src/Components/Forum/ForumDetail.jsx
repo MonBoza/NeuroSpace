@@ -9,8 +9,7 @@ const ForumDetail = ({ forumId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const storedUserName = localStorage.getItem('username');
-  const userProfile = JSON.parse(localStorage.getItem('userProfile')); // Fetch user profile from localStorage
-
+  const userProfile = JSON.parse(localStorage.getItem('userProfile')); 
   useEffect(() => {
     const fetchForumDetails = async () => {
       try {
@@ -54,42 +53,48 @@ const ForumDetail = ({ forumId }) => {
   }
 
   return (
-    <>
-      <div className='bg-white text-bold justify-self-center w-96 p-4 rounded-lg'>
-        <h2 className='font-extrabold text-center'>{forum.title}</h2>
-        <div className="description-box bg-gray-100 p-2 rounded-md mb-4">
-          <p>{forum.description}</p>
+    <div className="flex flex-col items-center space-y-6">
+      <div className="bg-white w-full max-w-3xl rounded-lg shadow-md p-6">
+        <h2 className="text-2xl font-bold mb-4 text-center">{forum.title}</h2>
+        <div className="bg-gray-100 rounded-md p-4 mb-4">
+          <p className="bg-gray-100">{forum.description}</p>
         </div>
-        <p>{forum.user}</p>
-        <p className='text-left'>Posted: {formatDate(forum.date)}</p>
-        <div className='bg-white text-bold justify-self-center w-1/2 p-4 rounded-lg'>
-          <h1 className='font-extrabold '>Replies</h1>
-          <ul className='bg-white text bold justify-self-auto'>
-            {comments.map(comment => {
-              if (comment.forum === forumId) {
-                return (
-                  <li className="border border-gray-300 rounded-md px-4 py-2 mb-2" key={comment.id}>
-                    <div><Linkify componentDecorator={(href, text, key) => (
-                      <a href={href.startsWith('http') ? href : ''} key={key}>
+        <div className="flex justify-between items-center text-gray-600">
+          <p>{forum.user}</p>
+          <p>Posted: {formatDate(forum.date)}</p>
+        </div>
+      </div>
+      <div className="bg-white w-full max-w-3xl rounded-lg shadow-md p-6">
+       
+        <ul className="space-y-4">
+          {comments.map((comment) => {
+            if (comment.forum === forumId) {
+              return (
+                <li className="bg-gray-100 rounded-lg p-4" key={comment.id}>
+                  <div>
+                    <Linkify componentDecorator={(href, text, key) => (
+                      <a href={href.startsWith('http') ? href : ''} key={key} className="text-blue-500">
                         {text}
                       </a>
-                    )}>{comment.content}</Linkify></div>
-                    <a>User: {storedUserName}</a>
+                    )}>{comment.content}</Linkify>
+                  </div>
+                  <div className="flex justify-between items-center mt-2 text-gray-600">
+                    <p>User: {storedUserName}</p>
                     <p>Posted: {formatDate(comment.date)}</p>
-                    <hr />
-                  </li>
-                );
-              }
-              return null;
-            })}
-          </ul>
-        </div>
+                  </div>
+                </li>
+              );
+            }
+            return null;
+          })}
+        </ul>
       </div>
-      <div className="flex justify-center">
+      <div className="bg-white w-full max-w-3xl rounded-lg shadow-md p-6">
         <CommentForm forumId={forumId} userProfile={userProfile} />
       </div>
-    </>
+    </div>
   );
 };
+
 
 export default ForumDetail;

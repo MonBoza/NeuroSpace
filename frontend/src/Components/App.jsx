@@ -9,6 +9,7 @@ import ForumList from "./Forum/ForumList";
 import Resource from "./Resource";
 import Footer from "./Footer";
 import Nav from "./Header";
+import EditProfileForm from "./EditProfileForm";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/topicForm" element={< TopicForm/>}/>
           <Route path="/forumList" element={< ForumList/>}/>
           <Route path="/Resources" element={<Resource />} />
+          <Route path="/editProfile" element={<EditProfileForm />} />
         </Routes>
       </div>
       <Footer />

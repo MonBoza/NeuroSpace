@@ -70,17 +70,8 @@ function TopicForm({userProfile}) {
         </div>
       </form>
 
-      {submittedData && (
+      {userProfile && (
         <div>
-          <p>Title: {submittedData.title}</p>
-          <p>Description: {submittedData.description}</p>
-          <p>Timestamp: {submittedData.timestamp}</p>
-          <p>UserName: {submittedData.user}</p>
-          <img
-            src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
-            alt="Profile Pic"
-            className="w-16 h-16 rounded-full mr-4"
-          />
           <ForumList userProfile={userProfile} />
         </div>
       )}

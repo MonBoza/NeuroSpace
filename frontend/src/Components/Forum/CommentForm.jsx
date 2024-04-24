@@ -38,25 +38,31 @@ function CommentForm({ forumId }) {
       setErrorMessage(error.response?.data?.error || 'An error occurred while adding the comment.');
     }
   };
-
+ 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="bg-white rounded-lg shadow-md p-8">
-      <h2>Add a comment</h2>
-      <form className="border border-gray-300 rounded-md px-4 py-2 mb-2"
-onSubmit={handleSubmit}>
-        <label htmlFor="comment">Enter your comment</label>
-        <textarea
-          id="comment"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Enter your comment"
-        />
-        <button type="submit">Submit</button>
-      </form>
-      {errorMessage && <p>{errorMessage}</p>}
-      {successMessage && <p>{successMessage}</p>}
-    </div>
+    <div className="flex justify-center">
+      <div className="max-w-xl w-full p-6 bg-white rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold mb-4">Add a Comment</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Enter your comment"
+            className="w-full px-4 py-2 text-gray-700 border rounded-lg focus:outline-none"
+            rows={4}
+          />
+          <div className="flex justify-end">
+            <button
+              type="submit"
+              className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+        {successMessage && <p className="text-green-500">{successMessage}</p>}
+      </div>
     </div>
   );
 }

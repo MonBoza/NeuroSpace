@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import EditProfileForm from "./EditProfile";
-import Home from "./Home";
-import TopicForm from "./Forum/TopicForm";
+import { FaUserEdit } from "react-icons/fa";
 
 const UserProfile = ({ signInUser, userName, token }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const storedToken = localStorage.getItem('token');
-  console.log(storedToken);
-
   const navigate = useNavigate();
+
   useEffect(() => {
     const checkTokenAndFetchProfile = async () => {
       try {
@@ -25,7 +22,6 @@ const UserProfile = ({ signInUser, userName, token }) => {
             },
           }
         );
-        console.log(tokenResponse);
 
         if (tokenResponse.status === 200) {
           // Token is valid, fetch the user profile data
@@ -47,74 +43,55 @@ const UserProfile = ({ signInUser, userName, token }) => {
     }
   }, [userName, token]);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
-  if (!userProfile) {
-    return <p>No profile data available.</p>;
-  }
-  const handleSignOut = async () => {
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/logout", {
-        headers: {
-          Authorization: `Token ${storedToken}`,
-        },
-      });
-
-      if (response.status === 200) {
-        ("Sign out successful!");
-        
-        navigate("/");
-      } else {
-        console.error("Sign out failed. Unexpected response:", response);
-      }
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
+  const handleEditProfile = () => {
+   navigate("/editprofile");
   };
-console.log(userProfile);
 
-return (
-  <div >
-    <div className="w-1/2 mx-auto mt-16 bg-white shadow-md rounded-lg">
-      <div className="p-4">
-        <h1 className="text-xl font-bold mb-2">{userName}'s Profile</h1>
-        <div className="flex justify-left items-center mb-4">
-          <img
-            src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
-            alt="Profile Pic"
-            className="w-10 display-flex h-10 round mr-4 float-left"
-          />
+  return (
+    <div className="container mx-auto mt-16">
+      <div className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <img
+                src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
+                alt="Profile Pic"
+                className="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <h1 className="text-xl font-bold">{userName}</h1>
+                <p className="text-gray-600">Member since {userProfile?.joined_at}</p>
+              </div>
+            </div>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-full"
+              onClick={handleEditProfile}
+            >
+              <FaUserEdit className="mr-1 text-sm" /> Edit Profile
+            </button>
+          </div>
+          <hr className="my-4" />
+          <div>
+            <h2 className="text-lg font-semibold">About Me</h2>
+            <p className="text-gray-600">{userProfile?.bio}</p>
+          </div>
+          <div className="mt-4">
+            <h2 className="text-lg font-semibold">Contact Information</h2>
+            <ul className="mt-2">
+              <li className="flex items-center space-x-2">
+                <span className="text-gray-600">Email:</span>
+                <span>{userProfile?.email}</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <span className="text-gray-600">Phone:</span>
+                <span>{userProfile?.phone}</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="flex justify-left items-center mb-4">
-          <p className="text-size-lg text-stone-900">About Me: {userProfile?.bio}</p>
-        </div>
-        <div className="flex justify-between">
-          <button
-            onClick={handleSignOut}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Sign Out
-          </button>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Edit Profile
-          </button>
-        </div>
-        {!userName && (
-          <p className="text-gray-600 mt-2">
-            Please sign in to view your profile.
-          </p>
-        )}
       </div>
     </div>
-   
-  </div>
-);
+  );
 };
 
 export default UserProfile;
