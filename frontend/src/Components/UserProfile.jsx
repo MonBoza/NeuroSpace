@@ -13,7 +13,6 @@ const UserProfile = ({ signInUser, userName, token }) => {
   useEffect(() => {
     const checkTokenAndFetchProfile = async () => {
       try {
-        // Check if the token is valid by making a request to the test_token endpoint
         const tokenResponse = await axios.get(
           "http://127.0.0.1:8000/test_token",
           {
@@ -24,7 +23,6 @@ const UserProfile = ({ signInUser, userName, token }) => {
         );
 
         if (tokenResponse.status === 200) {
-          // Token is valid, fetch the user profile data
           const profileResponse = await axios.get(
             `http://127.0.0.1:8000/userprofile/${userName}`,
             {}
@@ -44,7 +42,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
   }, [userName, token]);
 
   const handleEditProfile = () => {
-   navigate("/editprofile");
+    navigate("/editprofile");
   };
 
   return (
@@ -74,19 +72,6 @@ const UserProfile = ({ signInUser, userName, token }) => {
           <div>
             <h2 className="text-lg font-semibold">About Me</h2>
             <p className="text-gray-600">{userProfile?.bio}</p>
-          </div>
-          <div className="mt-4">
-            <h2 className="text-lg font-semibold">Contact Information</h2>
-            <ul className="mt-2">
-              <li className="flex items-center space-x-2">
-                <span className="text-gray-600">Email:</span>
-                <span>{userProfile?.email}</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <span className="text-gray-600">Phone:</span>
-                <span>{userProfile?.phone}</span>
-              </li>
-            </ul>
           </div>
         </div>
       </div>

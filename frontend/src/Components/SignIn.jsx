@@ -15,22 +15,18 @@ const SignIn = () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/login', signInUser);
       if (response.status === 201 || response.status === 215) {
-        const { token, user } = response.data; // Extract token from response
+        const { token, user } = response.data;
         localStorage.setItem("token", token);
         localStorage.setItem("username", user.username);
-        localStorage.setItem("userId", user.id)
-        setToken(token); // Save token to state
+        localStorage.setItem("userId", user.id);
+        setToken(token);
         setSignInMessage("Sign in successful!");
         setIsAuthenticated(true);
-        setUserName(user.username); 
-        
-        setSignInUser({username: "", password: "" }); 
-        
-        
+        setUserName(user.username); // Set the userName state
+        setSignInUser({ username: "", password: "" }); 
       }
     } catch (error) {
       console.error('There was a problem with the POST request:', error);
-    
       setSignInMessage("There was a problem signing in.");
     }
   };
@@ -39,7 +35,7 @@ const SignIn = () => {
     <div className="flex justify-center items-center h-screen">
       <div className="bg-white rounded-lg shadow-md p-8">
         {isAuthenticated ? (
-          <UserProfile signInUser={signInUser} token={token} userName={userName}  />
+          <UserProfile signInUser={signInUser} token={token} userName={userName} />
         ) : (
           <>
             <h1 className="text-2xl font-bold mb-4">SIGN IN</h1>
@@ -63,7 +59,6 @@ const SignIn = () => {
               Sign In
             </button>
             <br />
-          
             <p>{signInMessage}</p>
           </>
         )}
