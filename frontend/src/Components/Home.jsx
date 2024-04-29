@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Resource from "./Resource";
-
+import About from "./About"
 const Home = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState("");
@@ -16,9 +15,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col justify-between items-center bg-gray-200 p-8">
-        <div className=" p-4 ">
-          <h1 className="text-4xl font-bold mb-8 text-gray-800">
+   
+      <div className=" min-h-screen flex flex-col justify-between items-center bg-gray-200 p-8">
+        <div className=" p-4">
+          <h1 className="text-4xl font-bold mb-8">
             Welcome to Neurospace
           </h1>
           <div className="max-w-prose mx-auto text-left py-8">
@@ -46,6 +46,9 @@ const Home = () => {
                 Register For an Account
               </button>
             </div>
+          </div>
+          <div >
+            <About />
           </div>
         </div>
       </div>

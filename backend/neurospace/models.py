@@ -38,4 +38,4 @@ class Like(models.Model):
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.username} likes {self.post.title}"
+        return f"{self.user.username} likes {self.forum.title}"

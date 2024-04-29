@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Nerospace from '../assets/img/NUEROSPACE.png'
+import Neurospace from '../assets/img/NUEROSPACE.png'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -20,7 +20,7 @@ const Header = () => {
       setToken(storedToken);
       setUserName(storedUserName);
       setIsAuthenticated(true);
-      // Fetch user profile when authenticated
+  
       fetchUserProfile(storedUserName);
     }
   }, []);
@@ -50,11 +50,11 @@ const Header = () => {
   };
 
   return (
-    <nav className="shadow-lg position-fixed px-7" aria-label="Main navigation">
+    <nav className="shadow-lg position-fixed px-7 " aria-label="Main navigation">
       <div className="flex justify-between items-center py-4">
         <div>
           <img 
-            src={Nerospace} 
+            src={Neurospace} 
             alt="NeuroSpace Logo"
             className="h-1/4 w-1/4 rounded-1/2 logo"
           />
@@ -115,7 +115,7 @@ const Header = () => {
           <a href="/ForumList" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Forum</a>
         </div>
       )}
-      {/* Sign In/Sign Out button for mobile */}
+ 
       {isMenuOpen && (
         <div className="lg:hidden py-4">
           {isAuthenticated ? (
