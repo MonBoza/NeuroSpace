@@ -16,20 +16,31 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class ForumSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
+    user_profile = serializers.SerializerMethodField()
     
     class Meta:
         model = Forum
-        fields = ['id', 'title', 'description', 'date', 'user', 'comments']
+        fields = ['id', 'title', 'description', 'date', 'user', 'comments', 'user_profile']
 
     def get_user(self, obj):
         return obj.user.username
+
+    def get_user_profile(self, obj):  
+        return obj.user.userprofile
 
 class CommentSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+    user_profile = serializers.SerializerMethodField()
+
     class Meta:
         model = Comment
-        fields = ['id', 'user', 'forum', 'content', 'date']
+        fields = ['id', 'user', 'user_profile', 'forum', 'content', 'date']
+
     def get_user(self, obj):
         return obj.user.username
+
+    def get_user_profile(self, obj):  
+        return obj.user.userprofile
 
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:

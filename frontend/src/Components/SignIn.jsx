@@ -19,6 +19,7 @@ const SignIn = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("username", user.username);
         localStorage.setItem("userId", user.id);
+        localStorage.setItem("userprofile", user.userprofile) 
         setToken(token);
         setSignInMessage("Sign in successful!");
         setIsAuthenticated(true);
