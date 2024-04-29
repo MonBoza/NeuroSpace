@@ -10,26 +10,14 @@ const Home = () => {
 
   const navigate = useNavigate();
   const handleRegister = () => {
-    window.location.href = "/Register";
+    navigate('/register');
   };
-  const handleSignOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-
-    setToken("");
-    setUserName("");
-    setIsAuthenticated(false);
-    navigate("/");
-  };
-
-  const handleSignIn = () => {
-    window.location.href = "/SignIn";
-  };
+ 
 
   return (
     <>
-      <div className="min-h-screen flex flex-col lg:flex-row justify-between items-center bg-gray-100 p-8">
-        <div className="lg:w-1/2 p-4">
+      <div className="min-h-screen flex flex-col justify-between items-center bg-gray-200 p-8">
+        <div className=" p-4 ">
           <h1 className="text-4xl font-bold mb-8 text-gray-800">
             Welcome to Neurospace
           </h1>
@@ -58,11 +46,6 @@ const Home = () => {
                 Register For an Account
               </button>
             </div>
-          </div>
-        </div>
-        <div className="lg:w-1/2 lg:h-auto p-4">
-          <div className="bg-white rounded-lg shadow-md p-6 border border-gray-300">
-            <Resource />
           </div>
         </div>
       </div>
