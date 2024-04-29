@@ -10,10 +10,11 @@ header {
   padding: 10px 0;
   text-align: center;
   border-radius: 10px;
+  box-shadow:rgba(38, 36, 36, 0.933)
 }
 
 body {
-  background-color:#eff0f5d4 ;
+  background-color:#eff0f5 ;
   opacity: 50;
  
 
@@ -54,4 +55,12 @@ h1 {
   padding: 20px;
   margin: 20px 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
 }
