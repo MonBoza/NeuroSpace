@@ -22,7 +22,7 @@ const SignIn = () => {
         setToken(token);
         setSignInMessage("Sign in successful!");
         setIsAuthenticated(true);
-        setUserName(user.username); // Set the userName state
+        setUserName(user.username);
         setSignInUser({ username: "", password: "" }); 
       }
     } catch (error) {

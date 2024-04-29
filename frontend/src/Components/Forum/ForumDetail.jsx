@@ -66,12 +66,12 @@ const ForumDetail = ({ forumId }) => {
         </div>
       </div>
       <div className="bg-white w-full max-w-3xl rounded-lg shadow-md p-6">
-       
+           
         <ul className="space-y-4">
           {comments.map((comment) => {
             if (comment.forum === forumId) {
               return (
-                <li className="bg-gray-100 rounded-lg p-4" key={comment.id}>
+                <li className="bg-gray-200 rounded-lg p-4" key={comment.id}>
                   <div className="flex items-center mb-2">
                     <img
                       src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
@@ -87,7 +87,7 @@ const ForumDetail = ({ forumId }) => {
                     </div>
                   </div>
                   <div className="flex justify-between items-center text-gray-600">
-                    <p>User: {storedUserName}</p>
+                    <p>User: {comment.user.username}</p>
                     <p>Posted: {formatDate(comment.date)}</p>
                   </div>
                 </li>
@@ -105,5 +105,3 @@ const ForumDetail = ({ forumId }) => {
 };
 
 export default ForumDetail;
-
-// work on getting the user profile pic to display in the post

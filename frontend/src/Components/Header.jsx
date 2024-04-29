@@ -69,6 +69,9 @@ const Header = () => {
           <li>
             <a href="/ForumList" className="text-2xl text-indigo-500 px-10 font-bold">Forum</a>
           </li>
+          <li>
+            <a href="/userprofile" className="text-2xl text-indigo-500 px-10 font-bold">Profile</a>
+          </li>
         </ul>
         {isAuthenticated && userProfile && (
           <div className="text-white center">
@@ -113,6 +116,7 @@ const Header = () => {
           <a href="/" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Home</a>
           <a href="/resources" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Resources</a>
           <a href="/ForumList" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Forum</a>
+          <a href="/userprofile" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Profile</a>
         </div>
       )}
  
