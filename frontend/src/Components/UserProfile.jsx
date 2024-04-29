@@ -35,10 +35,6 @@ const UserProfile = ({ signInUser, userName, token }) => {
       }
       setIsLoading(false);
     };
-
-    if (token && userName) {
-      checkTokenAndFetchProfile();
-    }
   }, [userName, token]);
 
   const handleEditProfile = () => {

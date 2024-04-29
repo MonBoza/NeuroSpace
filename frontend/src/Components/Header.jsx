@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Neurospace from '../assets/img/NUEROSPACE.png'
+import Neurospace from '../assets/img/Neurospace.png'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
