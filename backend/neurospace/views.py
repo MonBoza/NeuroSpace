@@ -57,6 +57,12 @@ def forum_list(request):
 
 
 
+@api_view(['GET']) 
+def get_user_forums(request):
+    user_id = request.GET.get('user')
+    forums = Forum.objects.filter(user_id=user_id)
+    serialized_forums = [forum.serialize() for forum in forums]
+    return JsonResponse(serialized_forums, safe=False)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])

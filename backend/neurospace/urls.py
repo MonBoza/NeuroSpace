@@ -15,7 +15,7 @@ urlpatterns = [
     re_path('forum/', views.forum_list, name='forum_list'),
     path('userprofile/', views.userprofile_list, name='userprofile_list'),
     path('userprofile/<str:username>/', views.userprofile_detail, name='userprofile_detail'),
-   
+    path('userforums/<int:id>/', views.get_user_forums, name='get_user_forums'),
     path('forum_detail/<int:id>/', views.forum_detail, name='forum_detail'),
     path('comment/', views.comment_list, name='comment_list'),
     path('comment/<int:id>/', views.comment_detail, name='comment_detail'),

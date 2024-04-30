@@ -22,20 +22,25 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'password']
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', read_only=True)
+    date_created = serializers.DateTimeField(source='user.date_joined', read_only=True)
+
     class Meta:
         model = UserProfile
-        fields = ['id', 'user', 'bio', 'profile_pic']
-
+        fields = ['id', 'user', 'username', 'bio', 'profile_pic', 'date_created']
 
 class ForumSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
+    userprofile = serializers.SerializerMethodField()
    
     class Meta:
         model = Forum
-        fields = ['id', 'title', 'description', 'date', 'user', 'comments', ]
+        fields = ['id', 'title', 'description', 'date', 'user', 'comments', 'userprofile']
 
     def get_user(self, obj):
         return obj.user.username
+    def get_userprofile(self, obj):
+        return obj.user.userprofile.profile_pic.url
 
 class CommentSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()

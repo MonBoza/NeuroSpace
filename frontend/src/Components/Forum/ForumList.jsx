@@ -55,7 +55,7 @@ function ForumList() {
       {selectedForumId ? (
         <ForumDetail forumId={selectedForumId} />
       ) : (
-        <div className="flex flex-col items-center space-y-6">
+        <div className="flex flex-col top-3 items-center space-y-6">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline mb-4"
             onClick={() => window.location.href = '/topicform'}
@@ -76,7 +76,7 @@ function ForumList() {
                 >
                   <div className="flex items-center p-4">
                     <img
-                      src={`http://127.0.0.1:8000/${userProfile?.profile_pic}`}
+                      src={`http://127.0.0.1:8000${forum.userprofile}`}
                       alt="Profile Pic"
                       className="w-8 h-8 rounded-full mr-2"
                     />

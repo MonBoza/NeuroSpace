@@ -8,18 +8,13 @@ const UserProfile = ({ signInUser, userName, token }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const storedToken = localStorage.getItem('token');
-  const navigate = useNavigate();
-  // const storedUserName = localStorage.getItem('username');
+  const storedUserName = localStorage.getItem('username');
+  const storedUserId = localStorage.getItem('userId');
 
-  // const fetchUserProfile = (username) => {
-  //   axios.get(`http://127.0.0.1:8000/userprofile/${username}/`)
-  //     .then(response => {
-  //       setUserProfile(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching user profile:', error);
-  //     });
-  // };
+
+
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const checkTokenAndFetchProfile = async () => {
@@ -35,7 +30,7 @@ const UserProfile = ({ signInUser, userName, token }) => {
 
         if (tokenResponse.status === 200) {
           const profileResponse = await axios.get(
-            `http://127.0.0.1:8000/userprofile/${userName}`,
+            `http://127.0.0.1:8000/userprofile/${storedUserName}/`,
             {}
           );
           setUserProfile(profileResponse.data);
@@ -46,11 +41,19 @@ const UserProfile = ({ signInUser, userName, token }) => {
       }
       setIsLoading(false);
     };
+    checkTokenAndFetchProfile();
   }, [userName, token]);
 
   const handleEditProfile = () => {
     navigate("/editprofile");
   };
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString() ;
+  }
 
   return (
     <div className="container mx-auto mt-16">
@@ -64,8 +67,8 @@ const UserProfile = ({ signInUser, userName, token }) => {
                 className="w-12 h-12 rounded-full mr-4"
               />
               <div>
-                <h1 className="text-xl font-bold">{userName}</h1>
-                <p className="text-gray-600">Member since {userProfile?.joined_at}</p>
+                <h1 className="text-xl font-bold">{storedUserName}</h1>
+                <p className="text-gray-600">Member since {formatDate(userProfile?.date_created)}</p>
               </div>
             </div>
             <button
