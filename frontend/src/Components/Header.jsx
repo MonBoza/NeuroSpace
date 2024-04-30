@@ -119,6 +119,7 @@ const Header = () => {
       
       {isMenuOpen && (
         <div className="lg:hidden bg-gray-100 py-4">
+          <a href="/search" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Search</a>
           <a href="/" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Home</a>
           <a href="/resources" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Resources</a>
           <a href="/ForumList" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Forum</a>
