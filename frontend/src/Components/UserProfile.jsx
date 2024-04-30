@@ -9,6 +9,17 @@ const UserProfile = ({ signInUser, userName, token }) => {
   const [error, setError] = useState("");
   const storedToken = localStorage.getItem('token');
   const navigate = useNavigate();
+  // const storedUserName = localStorage.getItem('username');
+
+  // const fetchUserProfile = (username) => {
+  //   axios.get(`http://127.0.0.1:8000/userprofile/${username}/`)
+  //     .then(response => {
+  //       setUserProfile(response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching user profile:', error);
+  //     });
+  // };
 
   useEffect(() => {
     const checkTokenAndFetchProfile = async () => {

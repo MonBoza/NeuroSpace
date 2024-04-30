@@ -17,8 +17,8 @@ const Home = () => {
     <>
    
       <div className=" min-h-screen flex flex-col justify-between items-center bg-gray-200 p-8">
-        <div className=" p-4">
-          <h1 className="text-4xl font-bold mb-8">
+        <div className=" p-4 mb-4 py-10 scroll-px-10">
+          <h1 className="text-6xl font-bold mb-8">
             Welcome to Neurospace
           </h1>
           <div className="max-w-prose mx-auto text-left py-8">
@@ -40,14 +40,14 @@ const Home = () => {
                 with its own colors!
               </p>
               <button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
+                className="bg-indigo-400 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-full"
                 onClick={handleRegister}
               >
                 Register For an Account
               </button>
             </div>
           </div>
-          <div >
+          <div className="mb-4 p-8 m-4 flex-left">
             <About />
           </div>
         </div>
