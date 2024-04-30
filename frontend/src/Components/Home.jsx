@@ -19,9 +19,7 @@ const Home = () => {
    
       <div className="min-h-screen flex flex-col justify-between items-center bg-gray-200 p-8 relative">
         <div className="mt-auto">
-        <div className="mt-8 left-0 right-0 p-4">
-        <img src={Neurospace} className=" mx-auto max-h-82 max-w-82 logo" />
-        </div>
+       
           <h1 className="text-6xl text-transform: uppercase font-bold text-center mb-8">
             Welcome to Neurospace {userName? userName : ""}
           </h1>
@@ -52,6 +50,9 @@ const Home = () => {
         </div>
         
         <div className="mb-8 px-4 mt-10 py-4">
+        <div className="mt-8 left-0 right-0 p-4">
+        <img src={Neurospace} className=" mx-auto max-h-82 max-w-82 logo" />
+        </div>
           <h1 className="text-6xl text-transform: uppercase font-bold text-center mb-8">
             About Us
           </h1>
