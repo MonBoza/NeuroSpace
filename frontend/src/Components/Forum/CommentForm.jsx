@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function CommentForm({ forumId }) {
   const [content, setContent] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
  
 
   const handleSubmit = async (e) => {

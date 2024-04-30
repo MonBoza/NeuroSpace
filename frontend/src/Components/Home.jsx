@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <>
       <div className="min-h-screen flex flex-col justify-between items-center bg-gray-200 p-8 relative">
-        <div className="absolute top-2  mb-auto">
+        <div className="mt-auto">
           <h1 className="text-6xl font-bold text-center mb-8">
             Welcome to Neurospace {userName? userName : ""}
           </h1>
@@ -45,19 +45,17 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 mt-auto">
-          <div className="p-8 mb-4">
-            <h1 className="text-6xl font-bold text-center mb-8">
-              About NeuroSpace
-            </h1>
-            <div className="bg-white rounded-lg shadow-md p-6 border border-gray-300 text-lg text-gray-800">
-              <p className="mb-4">
-                Neurospace was born from the essence of Timothy, Ethan, and
-                Parker, embodying the very spirit of their being. These
-                remarkable individuals serve as shining examples, embodying
-                qualities we should all aspire to emulate.
-              </p>
-            </div>
+        <div className="mb-8 px-4 mt-10 py-4">
+          <h1 className="text-6xl font-bold text-center mb-8">
+            About NeuroSpace
+          </h1>
+          <div className="bg-white rounded-lg shadow-md p-6 border border-gray-300 text-lg text-gray-800">
+            <p className="mb-4">
+              Neurospace was born from the essence of Timothy, Ethan, and
+              Parker, embodying the very spirit of their being. These
+              remarkable individuals serve as shining examples, embodying
+              qualities we should all aspire to emulate.
+            </p>
           </div>
         </div>
       </div>

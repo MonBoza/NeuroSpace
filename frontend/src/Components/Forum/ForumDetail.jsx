@@ -11,7 +11,7 @@ const ForumDetail = ({ forumId }) => {
   const [error, setError] = useState('');
   const storedUserName = localStorage.getItem('username');
   const userProfile = localStorage.getItem('userProfile'); 
-  console.log(forumId);
+
   const navigate = useNavigate();
   useEffect(() => {
     const fetchForumDetails = async () => {

@@ -61,16 +61,16 @@ const Header = () => {
         </div>
         <ul className="hidden lg:flex items-center space-x-4">
           <li>
-            <a href="/" className="text-2xl text-indigo-500 px-10 font-bold">Home</a>
+            <a href="/" className="text-2xl text-indigo-700 px-10 font-bold">Home</a>
           </li>
           <li>
-            <a href="/resources" className="text-2xl text-indigo-500 px-10 font-bold">Resources</a>
+            <a href="/resources" className="text-2xl text-indigo-700 px-10 font-bold">Resources</a>
           </li>
           <li>
-            <a href="/ForumList" className="text-2xl text-indigo-500 px-10 font-bold">Forum</a>
+            <a href="/ForumList" className="text-2xl text-indigo-700 px-10 font-bold">Forum</a>
           </li>
           <li>
-            <a href="/userprofile" className="text-2xl text-indigo-500 px-10 font-bold">Profile</a>
+            <a href="/userprofile" className="text-2xl text-indigo-700 px-10 font-bold">Profile</a>
           </li>
         </ul>
         {isAuthenticated && userProfile && (

@@ -30,11 +30,12 @@ function ForumList() {
           headers: {
             Authorization: `Token ${token}`,
           },
-          params: {
-            ordering: '-created_at', 
-          },
         });
-        setForums(response.data);
+        const sortedForums = response.data.sort((a, b) => {
+          return new Date(b.created_at) - new Date(a.created_at);
+        });
+        setForums(sortedForums);
+  
       } catch (error) {
         console.error('Error fetching forum list:', error);
         setError('There was a problem fetching the forum list.');
@@ -57,7 +58,7 @@ function ForumList() {
       ) : (
         <div className="flex flex-col top-3 items-center space-y-6">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline mb-4"
+            className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline mb-4"
             onClick={() => window.location.href = '/topicform'}
           >
             Create Your Own Thread
@@ -95,4 +96,3 @@ function ForumList() {
 
 export default ForumList;
 
-//  work on getting the profile pic to display in comments :) and in forum list. I accidentally made it show logged in users profile pic in all comments.
