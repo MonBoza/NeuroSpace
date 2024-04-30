@@ -1,6 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.hashers import make_password
+
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, null=True)

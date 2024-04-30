@@ -31,7 +31,7 @@ function CommentForm({ forumId }) {
       if (response.status === 201) {
         setContent('');
         setSuccessMessage('Comment added successfully!');
-        setTimeout(() => setSuccessMessage(''), 3000); // Clear success message after some time
+        navigate('/ForumList')
       }
     } catch (error) {
       console.error('Error adding comment:', error);

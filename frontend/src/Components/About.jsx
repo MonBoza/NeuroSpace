@@ -3,7 +3,7 @@ const About = () => {
 <>
 <div className="min-h-screen flex flex-col justify-between items-center bg-gray-200 p-8">
   <div className="p-4">
-    <h1 className="text-3xl font-bold mb-8">About NeuroSpace</h1>
+    <h1 className="text-6xl font-bold mb-8">About NeuroSpace</h1>
     <div className="max-w-prose mx-auto text-left py-8">
       <div className="bg-white rounded-lg shadow-md p-6 border border-gray-300">
         <p className="text-lg mb-4 text-gray-800">

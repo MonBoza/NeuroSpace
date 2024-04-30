@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CommentForm from './CommentForm';
 import Linkify from 'react-linkify';
+import { useNavigate } from 'react-router-dom';
 
 const ForumDetail = ({ forumId }) => {
   const [forum, setForum] = useState(null);
@@ -11,7 +12,7 @@ const ForumDetail = ({ forumId }) => {
   const storedUserName = localStorage.getItem('username');
   const userProfile = localStorage.getItem('userProfile'); 
   console.log(forumId);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchForumDetails = async () => {
       try {

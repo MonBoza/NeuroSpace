@@ -157,7 +157,13 @@ def signup(request):
     user_serializer = UserSerializer(data=request.data)
     if user_serializer.is_valid():
         user = user_serializer.save()
+        # Hash the password
+        user.set_password(request.data['password'])
+        user.save()
+
+        # Create user profile
         profile_data = {
+            'user': user.id,
             'bio': request.data.get('bio'),
             'profile_pic': request.FILES.get('profile_pic')
         }
