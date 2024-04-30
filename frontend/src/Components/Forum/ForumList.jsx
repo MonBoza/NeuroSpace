@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ForumDetail from './ForumDetail';
+import Search from '../Search';
 
 function ForumList() {
   const [forums, setForums] = useState([]);

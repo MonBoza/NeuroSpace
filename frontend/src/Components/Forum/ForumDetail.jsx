@@ -10,7 +10,7 @@ const ForumDetail = ({ forumId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const storedUserName = localStorage.getItem('username');
-  const userProfile = localStorage.getItem('userProfile'); 
+  const userProfile = localStorage.getItem('userProfile');
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -68,14 +68,14 @@ const ForumDetail = ({ forumId }) => {
         </div>
       </div>
       <div className="bg-white w-full max-w-3xl rounded-lg shadow-md p-6">
-           
+
         <ul className="space-y-4">
           {comments.map((comment) => {
             if (comment.forum === forumId) {
               return (
                 <li className="bg-gray-200 rounded-lg p-4" key={comment.id}>
                   <div className="flex items-center mb-2">
-              
+
                     <div>
                       <Linkify componentDecorator={(href, text, key) => (
                         <a href={href.startsWith('http') ? href : ''} key={key} className="text-blue-500">
@@ -95,9 +95,11 @@ const ForumDetail = ({ forumId }) => {
           })}
         </ul>
       </div>
-      <div className="bg-white w-full max-w-3xl rounded-lg shadow-md p-6">
-        <CommentForm forumId={forumId} userProfile={userProfile} />
-      </div>
+      {forumId && userProfile && (
+        <div className="bg-white w-full max-w-3xl rounded-lg shadow-md p-6">
+          <CommentForm forumId={forumId} userProfile={userProfile} />
+        </div>
+      )}
     </div>
   );
 };

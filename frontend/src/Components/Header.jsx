@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Neurospace from '../assets/img/Neurospace.png'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { IoIosSearch } from "react-icons/io";
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -49,6 +50,7 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+
   return (
     <nav className="shadow-lg position-fixed px-7 " aria-label="Main navigation">
       <div className="flex justify-between items-center py-4">
@@ -60,6 +62,10 @@ const Header = () => {
           />
         </div>
         <ul className="hidden lg:flex items-center space-x-4">
+          <li>
+            <a href="/search" className="text-2xl text-indigo-700 px-10 font-bold"><IoIosSearch/></a>
+          </li>
+    
           <li>
             <a href="/" className="text-2xl text-indigo-700 px-10 font-bold">Home</a>
           </li>

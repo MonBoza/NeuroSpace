@@ -22,6 +22,8 @@ urlpatterns = [
     path('forum/comments/<int:id>/', views.get_forum_comments, name='get_forum_comments'),
     path('like/', views.like_list, name='like_list'),
     path('like/<int:id>/', views.like_detail, name='like_detail'),
+    
+    path('forum/search/', views.search, name='search'),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

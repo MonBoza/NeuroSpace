@@ -54,7 +54,7 @@ Content-Type: application/json
 ###
 POST  http://127.0.0.1:8000/forum/
 Content-Type: application/json
-Authorization: Token 0815bb872fd7506b473a670eef9839af488b5cae
+Authorization: Token fd47f4b0d5722f92eeff38024a4e12150391df16
     
   {
    "title" : "Timmy is ",
@@ -78,3 +78,10 @@ Authorization: Token 0815bb872fd7506b473a670eef9839af488b5cae
         "forum" : "15",
         "user" : "36"
     }
+
+### 
+GET http://127.0.0.1:8000/forum/search/?q=Timmy
+Content-Type: application/json
+Authorization: Token fd47f4b0d5722f92eeff38024a4e12150391df16
+
+{}
