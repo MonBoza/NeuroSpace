@@ -60,20 +60,16 @@ const Home = () => {
             <p className="mb-4">
               Neurospace was born from the essence of Timothy, Ethan, and
               Parker, embodying the very spirit of their being.
-              <p className="mb-4"> 
-              These remarkable individuals serve as shining examples, encompassing
-              qualities we should all aspire to emulate.</p>
             </p>
-           
+            <p className="mb-4"> 
+              These remarkable individuals serve as shining examples, encompassing
+              qualities we should all aspire to emulate.
+            </p>
           </div>
         </div>
       </div>
-      
-       
-       
-      
     </>
   );
-};
+}
 
 export default Home;

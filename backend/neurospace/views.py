@@ -12,6 +12,17 @@ from rest_framework.authentication import SessionAuthentication, TokenAuthentica
 from .models import Forum, Comment, Like, UserProfile
 from django.contrib.auth.decorators import login_required
 
+
+@api_view(['GET'])
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        forums = Forum.objects.filter(title__icontains=query)
+        serialized_forums = [forum.serialize() for forum in forums]
+        return Response(serialized_forums)
+    else:
+        return Response({"error": "No search query provided"}, status=status.HTTP_400_BAD_REQUEST)
+
 # UserProfile Views
 @api_view(['POST', 'GET'])
 def userprofile_list(request):
