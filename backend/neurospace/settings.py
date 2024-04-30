@@ -34,6 +34,7 @@ REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.All
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',  
+    'https://nuerospace.onrender.com/',
 ]
 # Application definition
 
