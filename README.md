@@ -1,7 +1,13 @@
-# NueroSpace 🚀
-![icon](https://github.com/MonBoza/NueroSpace/assets/145809292/ebb3e9a5-4a47-42c9-8c21-e2ea2fa5cb5f)
+<div align="center">
+
+# NueroSpace 
+
+  <img src="https://github.com/MonBoza/NueroSpace/assets/145809292/ebb3e9a5-4a47-42c9-8c21-e2ea2fa5cb5f" alt="icon">
+<a href="https://github.com/MonBoza">
 
 ## By Monica Barboza
+</a>
+</div>
 
 ### About
 
@@ -108,4 +114,5 @@ Email: [MonBoza@gmail.com](mailto:MonBoza@gmail.com)
 Copyright (c) April 21, 2024 Monica Barboza
 
 ## Component Diagram
+
 ![NS_Component_Diagram](https://github.com/MonBoza/NueroSpace/assets/145809292/7d515e34-dea2-493f-af9a-852b92fd5032)

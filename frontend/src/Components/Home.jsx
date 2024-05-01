@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Neurospace from '../assets/img/Neurospace.png'
+import Icon from '../assets/img/icon.png'
 
 const Home = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -51,7 +51,7 @@ const Home = () => {
         
         <div className="mb-8 px-4 mt-10 py-4">
         <div className="mt-8 left-0 right-0 p-4">
-        <img src={Neurospace} className=" mx-auto max-h-82 max-w-82 logo" />
+        <img src={Icon} className=" mx-auto max-h-82 max-w-82 logo" />
         </div>
           <h1 className="text-6xl text-transform: uppercase font-bold text-center mb-8">
             About Us
