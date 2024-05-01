@@ -21,7 +21,6 @@ NeuroSpace is an inclusive networking application designed specifically for neur
 - Django
 - Django Rest Framework
 - Tailwind CSS
-- (consider Material UI?)
 - Axios
 - Python3
 - React
@@ -66,14 +65,19 @@ cd backend
 ```bash
 . .venv/bin/activate
 ```
+3) Migrate the Database by running:
 
-3) Start the server by running:
+```bash
+python manage.py migrate
+```
+
+4) Start the server by running:
 
 ```bash
 python manage.py runserver
 ```
 
-### Front end setup 
+### Front end setup
 
  1) Open a separate terminal window and navigate to the "frontend" directory within the NeuroSpace folder.
 2) Install the required packages:
@@ -98,3 +102,5 @@ NeuroSpace is  licensed under the [MIT License.](https://opensource.org/license/
 Email: [MonBoza@gmail.com](mailto:MonBoza@gmail.com)
 
 Copyright (c) April 21, 2024 Monica Barboza
+
+## Component Diagram
