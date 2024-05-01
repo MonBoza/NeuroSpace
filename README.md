@@ -104,3 +104,4 @@ Email: [MonBoza@gmail.com](mailto:MonBoza@gmail.com)
 Copyright (c) April 21, 2024 Monica Barboza
 
 ## Component Diagram
+![NS_Component_Diagram](https://github.com/MonBoza/NueroSpace/assets/145809292/7d515e34-dea2-493f-af9a-852b92fd5032)
