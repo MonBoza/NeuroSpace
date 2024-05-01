@@ -65,6 +65,7 @@ cd backend
 ```bash
 . .venv/bin/activate
 ```
+
 3) Migrate the Database by running:
 
 ```bash
@@ -80,7 +81,9 @@ python manage.py runserver
 ### Front end setup
 
  1) Open a separate terminal window and navigate to the "frontend" directory within the NeuroSpace folder.
+
 2) Install the required packages:
+
 ```bash
 npm install
 ```
