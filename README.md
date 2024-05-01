@@ -1,4 +1,5 @@
 # NueroSpace 🚀
+![icon](https://github.com/MonBoza/NueroSpace/assets/145809292/ebb3e9a5-4a47-42c9-8c21-e2ea2fa5cb5f)
 
 ## By Monica Barboza
 
