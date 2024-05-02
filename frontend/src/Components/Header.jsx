@@ -73,7 +73,7 @@ const Header = () => {
             <a href="/resources" className="text-2xl text-indigo-700 px-10 font-bold">Resources</a>
           </li>
           <li>
-            <a href="/ForumList" className="text-2xl text-indigo-700 px-10 font-bold">Forum</a>
+            <a href="/forumList" className="text-2xl text-indigo-700 px-10 font-bold">Forum</a>
           </li>
           <li>
             <a href="/userprofile" className="text-2xl text-indigo-700 px-10 font-bold">Profile</a>
