@@ -26,7 +26,7 @@ function App() {
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/topicForm" element={< TopicForm/>}/>
           <Route path="/forumList" element={< ForumList/>}/>
-          <Route path="/Resources" element={<Resource />} />
+          <Route path="/resources" element={<Resource />} />
           <Route path="/editProfile" element={<EditProfileForm />} />
           <Route path="/search" element={<Search />} />
          
