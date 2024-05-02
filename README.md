@@ -10,6 +10,8 @@
 
 ### About
 
+[Demo](https://neurospace.netlify.app/)
+
 NeuroSpace is an inclusive networking application designed specifically for neurodivergent individuals and their loved ones. This platform provides a welcoming space where users can connect with others, share experiences, access valuable resources, and foster meaningful relationships.
 <div align="center">
 <img src="./frontend/src/assets/img/HomePage.png" alt="Neurospace homepage" width="400px" height="300px">
