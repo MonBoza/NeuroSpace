@@ -55,7 +55,7 @@ const Header = () => {
     <nav className="shadow-lg position-fixed px-7 " aria-label="Main navigation">
       <div className="flex justify-between items-center py-4">
         <div>
-          <img 
+          <img onClick={() => navigate('/')} 
             src={Neurospace} 
             alt="NeuroSpace Logo"
             className="h-1/4 w-1/4 rounded-1/2 logo"
