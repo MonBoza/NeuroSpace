@@ -123,6 +123,7 @@ const Header = () => {
           <a href="/resources" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Resources</a>
           <a href="/ForumList" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Forum</a>
           <a href="/userprofile" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Profile</a>
+          <a href="/search" className="block text-lg text-indigo-500 px-4 py-2 border-b border-gray-300">Search</a>
         </div>
       )}
  

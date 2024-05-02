@@ -28,7 +28,7 @@ function Search() {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center ">
             <div className="bg-white rounded-lg shadow-md p-8">
                 <input
                     type="text"

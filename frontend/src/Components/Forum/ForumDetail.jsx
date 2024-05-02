@@ -95,7 +95,7 @@ const ForumDetail = ({ forumId }) => {
           })}
         </ul>
       </div>
-      {forumId && userProfile && (
+      {forumId &&  (
         <div className="bg-white w-full max-w-3xl rounded-lg shadow-md p-6">
           <CommentForm forumId={forumId} userProfile={userProfile} />
         </div>
