@@ -18,6 +18,7 @@ bleach @ file:///opt/conda/conda-bld/bleach_1641577558959/work
 boltons @ file:///Users/cbousseau/work/recipes/ci_py311/boltons_1677965141748/work
 boto3==1.34.35
 botocore==1.34.98
+Brotli==1.1.0
 brotlipy==0.7.0
 celery==5.3.4
 certifi @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_3bweqb8byn/croot/certifi_1690232244779/work/certifi
@@ -215,6 +216,7 @@ virtualenv==20.24.5
 wcwidth==0.2.6
 webencodings==0.5.1
 websocket-client @ file:///Users/cbousseau/work/recipes/ci_py311/websocket-client_1677918996745/work
+whitenoise==6.6.0
 widgetsnbextension @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_cd_nvw5x1_/croot/widgetsnbextension_1679313872684/work
 xlrd==2.0.1
 xlwt==1.3.0
