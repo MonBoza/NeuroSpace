@@ -29,3 +29,4 @@ bin
 .venv
 db.sqlite3
 
+media/profile_pics
