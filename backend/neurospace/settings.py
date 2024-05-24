@@ -90,12 +90,11 @@ WSGI_APPLICATION = 'neurospace.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neurospace',
-        'USER': 'monboza',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+       'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://postgres:postgres@localhost:5432/neurospace',
+        conn_max_age=600
+    )
     }
 }
 

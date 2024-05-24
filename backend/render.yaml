@@ -9,12 +9,12 @@ services:
     plan: free
     name: neurospace
     runtime: python
-    buildCommand: "./build.sh"
+    buildCommand: "../backend/build.sh"
     startCommand: "python -m gunicorn neurospace.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: neurospacedb
+          name: neurospace
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
