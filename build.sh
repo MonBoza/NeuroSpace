@@ -2,11 +2,14 @@
 # Exit on error
 set -o errexit
 
-# Modify this line as needed for your package manager (pip, poetry, etc.)
+# Install dependencies using pip
 pip install -r requirements.txt
 
-# Convert static asset files
-python backend/manage.py collectstatic --no-input
+# Navigate to the backend directory
+cd backend
 
-# Apply any outstanding database migrations
-python backend/manage.py migrate
+# Collect static files
+python manage.py collectstatic --no-input
+
+# Apply database migrations
+python manage.py migrate
